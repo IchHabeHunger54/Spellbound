@@ -11,7 +11,7 @@ public final class Fireball extends AbstractTargetSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.FIRE_SHIELD.get())) {
-            target.attackEntityFrom(DamageSource.MAGIC, 6);
+            target.attackEntityFrom(DamageSource.ON_FIRE, 6);
             world.createExplosion(target, target.getPosX(), target.getPosY(), target.getPosZ(), 3, true, Explosion.Mode.DESTROY);
             return true;
         }
