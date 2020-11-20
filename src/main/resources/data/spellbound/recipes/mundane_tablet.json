@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "spellbound:gold_magic_mushroom"
+    },
+    "T": {
+      "item": "spellbound:base_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:mundane_tablet"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "spellbound:rainbow_magic_mushroom"
+    },
+    "T": {
+      "item": "spellbound:base_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:disruption_tablet"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/quartz"
+    },
+    "T": {
+      "item": "spellbound:obsidian_wall"
+    }
+  },
+  "result": {
+    "item": "spellbound:bedrock_wall"
+  }
+}

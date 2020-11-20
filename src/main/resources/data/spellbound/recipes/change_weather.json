@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:snow_block"
+    },
+    "T": {
+      "item": "spellbound:advance_time"
+    }
+  },
+  "result": {
+    "item": "spellbound:change_weather"
+  }
+}

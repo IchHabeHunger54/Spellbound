@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/lapis"
+    },
+    "T": {
+      "item": "spellbound:lightning_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:taser"
+  }
+}

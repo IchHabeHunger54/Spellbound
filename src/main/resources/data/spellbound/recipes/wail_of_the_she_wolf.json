@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "CRL",
+    " S "
+  ],
+  "key": {
+    "F": {
+      "item": "spellbound:greater_fireball"
+    },
+    "C": {
+      "item": "spellbound:cold_blast"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "L": {
+      "item": "spellbound:area_lightning"
+    },
+    "S": {
+      "item": "minecraft:ender_chest"
+    }
+  },
+  "result": {
+    "item": "spellbound:wail_of_the_she_wolf"
+  }
+}

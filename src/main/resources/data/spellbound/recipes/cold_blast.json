@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:packed_ice"
+    },
+    "T": {
+      "item": "spellbound:icicle"
+    }
+  },
+  "result": {
+    "item": "spellbound:icy_grip"
+  }
+}

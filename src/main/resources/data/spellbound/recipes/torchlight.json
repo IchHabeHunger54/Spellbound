@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:torch"
+    },
+    "T": {
+      "item": "spellbound:mundane_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:torchlight"
+  }
+}

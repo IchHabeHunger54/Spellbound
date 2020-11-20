@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "spellbound:item/wail_of_the_she_wolf"
+    }
+}

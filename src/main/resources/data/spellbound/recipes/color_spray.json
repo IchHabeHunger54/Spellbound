@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " R ",
+    "GTY",
+    " B "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "G": {
+      "item": "minecraft:green_dye"
+    },
+    "Y": {
+      "item": "minecraft:yellow_dye"
+    },
+    "B": {
+      "item": "minecraft:blue_dye"
+    },
+    "T": {
+      "item": "spellbound:protection_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:color_spray"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:storage_blocks/lapis"
+    },
+    "T": {
+      "item": "spellbound:lightning_bolt"
+    }
+  },
+  "result": {
+    "item": "spellbound:area_lightning"
+  }
+}

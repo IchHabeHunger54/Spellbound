@@ -1,0 +1,37 @@
+{
+  "zero_spell": {
+    "sounds": [
+      "spellbound:zero_spell"
+    ]
+  },
+  "one_spell": {
+    "sounds": [
+      "spellbound:one_spell"
+    ]
+  },
+  "two_spell": {
+    "sounds": [
+      "spellbound:two_spell"
+    ]
+  },
+  "three_spell": {
+    "sounds": [
+      "spellbound:three_spell"
+    ]
+  },
+  "four_spell": {
+    "sounds": [
+      "spellbound:four_spell"
+    ]
+  },
+  "five_spell": {
+    "sounds": [
+      "spellbound:five_spell"
+    ]
+  },
+  "surge": {
+    "sounds": [
+      "spellbound:surge"
+    ]
+  }
+}

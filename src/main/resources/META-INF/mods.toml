@@ -1,0 +1,13 @@
+modLoader = "javafml"
+loaderVersion = "[28,)"
+[[mods]]
+modId = "spellbound"
+version = "${file.jarVersion}"
+displayName = "Spellbound"
+#displayURL="http://example.com/"
+logoFile="spellbound.png"
+#credits=""
+#authors=""
+description = '''
+
+'''

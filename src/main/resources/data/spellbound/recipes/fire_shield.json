@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "spellbound:base_tablet"
+    },
+    "T": {
+      "item": "spellbound:fire_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:fire_shield"
+  }
+}

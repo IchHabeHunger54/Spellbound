@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:arrows"
+    },
+    "T": {
+      "item": "spellbound:disruption_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:breach"
+  }
+}

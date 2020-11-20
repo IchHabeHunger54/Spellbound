@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "spellbound:block/gray_magic_mushroom"
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "T": {
+      "item": "spellbound:fireball"
+    }
+  },
+  "result": {
+    "item": "spellbound:greater_fireball"
+  }
+}
