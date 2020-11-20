@@ -1,11 +1,14 @@
 package ihh.spellbound;
 
+import ihh.spellbound.config.Config;
 import ihh.spellbound.init.IInit;
 import ihh.spellbound.init.ItemInit;
 import javax.annotation.Nonnull;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod("spellbound")
@@ -20,5 +23,6 @@ public class Spellbound {
 
     public Spellbound() {
         IInit.register(FMLJavaModLoadingContext.get().getModEventBus());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.config);
     }
 }
