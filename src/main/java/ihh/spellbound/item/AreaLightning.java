@@ -21,7 +21,7 @@ public final class AreaLightning extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.THREE;
     }
 }

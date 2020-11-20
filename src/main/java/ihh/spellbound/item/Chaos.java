@@ -9,7 +9,7 @@ public final class Chaos extends AbstractHarmfulPotionSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.THREE;
     }
 }

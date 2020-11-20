@@ -17,7 +17,7 @@ public final class Torchlight extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.ZERO;
     }
 }

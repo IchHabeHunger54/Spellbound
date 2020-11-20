@@ -9,7 +9,7 @@ public final class Haste extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.TWO;
     }
 }

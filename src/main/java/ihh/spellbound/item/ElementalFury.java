@@ -32,7 +32,7 @@ public final class ElementalFury extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FIVE;
     }
 }

@@ -27,7 +27,7 @@ public final class IcyGrip extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.ONE;
     }
 }

@@ -50,7 +50,7 @@ public final class ColorSpray extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.TWO;
     }
 }

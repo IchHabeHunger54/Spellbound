@@ -19,7 +19,7 @@ public final class SummonWitherSkeleton extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.THREE;
     }
 }

@@ -36,7 +36,7 @@ public final class StoneWall extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FOUR;
     }
 }

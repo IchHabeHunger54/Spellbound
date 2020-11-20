@@ -21,7 +21,7 @@ public final class WailOfTheSheWolf extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FIVE;
     }
 }

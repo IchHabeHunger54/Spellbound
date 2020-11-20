@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -19,8 +18,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -33,7 +30,7 @@ public abstract class AbstractSpell extends Item {
 
     @Override
     public void addInformation(@Nonnull ItemStack stack, World world, List<ITextComponent> tooltip, @Nonnull ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(getTime().key));
+        tooltip.add(new TranslationTextComponent(getDefaultTime().key));
     }
 
     @Nonnull
@@ -44,12 +41,12 @@ public abstract class AbstractSpell extends Item {
 
     @Override
     public final int getUseDuration(@Nonnull ItemStack s) {
-        return getTime().duration;
+        return getDefaultTime().duration;
     }
 
     @Override
     public final ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull PlayerEntity player, @Nonnull Hand hand) {
-        if (this instanceof AbstractSelfSpell && player.isPotionActive(EffectInit.ARCHMAGIC.get()) || getTime().duration == 0)
+        if (this instanceof AbstractSelfSpell && player.isPotionActive(EffectInit.ARCHMAGIC.get()) || getDefaultTime().duration == 0)
             onItemUseFinish(player.getHeldItem(hand), world, player);
         player.setActiveHand(hand);
         return super.onItemRightClick(world, player, hand);
@@ -64,20 +61,24 @@ public abstract class AbstractSpell extends Item {
                 b = use(stack, getTarget((PlayerEntity)entity), (ServerWorld) world);
             else return super.onItemUseFinish(stack, world, entity);
             entity.setActiveHand(entity.getActiveHand());
-            if (!entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && world.rand.nextInt(entity.isPotionActive(EffectInit.CHAOS.get()) ? 3 : 200) == 1) {
-                if (world.rand.nextInt(8) == 1) entity.setFire(10);
-                else entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200));
-                world.playSound((PlayerEntity) entity, entity.getPosition(), SoundInit.SURGE.get(), SoundCategory.PLAYERS, 1, 1);
-            }
+            doSurge((PlayerEntity) entity, world);
             if (!((PlayerEntity) entity).isCreative() && b) stack.shrink(1);
-            world.playSound((PlayerEntity) entity, entity.getPosition(), getTime().sound.get(), SoundCategory.PLAYERS, 1, 1);
+            world.playSound((PlayerEntity) entity, entity.getPosition(), getDefaultTime().sound.get(), SoundCategory.PLAYERS, 1, 1);
         }
         return super.onItemUseFinish(stack, world, entity);
     }
 
+    private void doSurge(PlayerEntity entity, World world) {
+        if (!entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && world.rand.nextInt(entity.isPotionActive(EffectInit.CHAOS.get()) ? 3 : 200) == 1) {
+            if (world.rand.nextInt(8) == 1) entity.setFire(10);
+            else entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200));
+            world.playSound(entity, entity.getPosition(), SoundInit.SURGE.get(), SoundCategory.PLAYERS, 1, 1);
+        }
+    }
+
     protected abstract boolean use(ItemStack stack, LivingEntity target, ServerWorld world);
 
-    protected abstract Time getTime();
+    protected abstract Time getDefaultTime();
 
     protected abstract LivingEntity getTarget(PlayerEntity caster);
 

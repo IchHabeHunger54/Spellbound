@@ -39,7 +39,7 @@ public final class Icicle extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.TWO;
     }
 }

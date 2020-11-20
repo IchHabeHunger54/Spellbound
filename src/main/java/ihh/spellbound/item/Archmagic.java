@@ -9,7 +9,7 @@ public final class Archmagic extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.THREE;
     }
 }

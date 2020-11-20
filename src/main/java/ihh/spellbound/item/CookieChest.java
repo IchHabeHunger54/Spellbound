@@ -38,7 +38,7 @@ public final class CookieChest extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FIVE;
     }
 }

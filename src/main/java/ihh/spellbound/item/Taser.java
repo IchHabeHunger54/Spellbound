@@ -20,7 +20,7 @@ public final class Taser extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.ONE;
     }
 }

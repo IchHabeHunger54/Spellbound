@@ -33,7 +33,7 @@ public final class DimensionDoor extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FOUR;
     }
 }

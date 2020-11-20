@@ -9,7 +9,7 @@ public final class Flight extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getTime() {
+    protected Time getDefaultTime() {
         return Time.FOUR;
     }
 }
