@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Util;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.BlockInit;
 import net.minecraft.entity.LivingEntity;
@@ -11,26 +12,21 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public final class PanicRoom extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
+        boolean b = false;
         for (int w = -2; w < 3; w++)
             for (int h = -2; h < 3; h++)
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(w, 3, h))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(w, 3, h))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(w, 3, h)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, 3, h)), BlockInit.DECAYING_BEDROCK.get()) || b;
         for (int w = -2; w < 3; w++)
             for (int h = -2; h < 3; h++)
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(w, -1, h))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(w, -1, h))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(w, -1, h)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, -1, h)), BlockInit.DECAYING_BEDROCK.get()) || b;
         for (int w = -3; w < 4; w++)
             for (int h = 0; h < 3; h++) {
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(w, h, 3))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(w, h, 3))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(w, h, 3)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(-3, h, w))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(-3, h, w))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(-3, h, w)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(w, h, -3))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(w, h, -3))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(w, h, -3)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
-                if (!world.getBlockState(new BlockPos(target.getPositionVec().add(3, h, w))).isOpaqueCube(world, new BlockPos(target.getPositionVec().add(3, h, w))))
-                    world.setBlockState(new BlockPos(target.getPositionVec().add(3, h, w)), BlockInit.DECAYING_BEDROCK.get().getDefaultState());
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, 3)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(-3, h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, -3)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(3, h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
             }
-        return true;
+        return b;
     }
 
     @Override

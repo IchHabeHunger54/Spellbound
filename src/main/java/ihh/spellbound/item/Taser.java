@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public final class Taser extends AbstractTargetSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        if (target != null && !target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.COLD_SHIELD.get())) {
+        if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.COLD_SHIELD.get())) {
             target.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 1200));
             target.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 4);
             return true;

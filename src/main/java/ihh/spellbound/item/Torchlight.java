@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Util;
 import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
@@ -11,8 +12,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public final class Torchlight extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        if (world.isAirBlock(target.getPosition()) && world.getBlockState(target.getPosition().down()).isOpaqueCube(world, target.getPosition().down()) && world.getLightFor(LightType.BLOCK, target.getPosition()) < 8) {
-            world.setBlockState(target.getPosition(), Blocks.TORCH.getDefaultState());
+        if (world.getLightFor(LightType.BLOCK, target.getPosition()) < 8) {
+            Util.replaceAirBlock(world, target.getPosition(), Blocks.TORCH);
             return true;
         }
         return false;

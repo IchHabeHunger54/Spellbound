@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Util;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import java.util.Arrays;
@@ -7,12 +8,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -23,23 +23,16 @@ public final class ColorSpray extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
-        Direction direction = target.getHorizontalFacing();
-        for (int length = 3; length < 14; length++) {
-            int xCount = direction.getAxis() == Direction.Axis.X ? 0 : length;
-            int zCount = direction.getAxis() == Direction.Axis.Z ? 0 : length;
-            BlockPos pos = new BlockPos(direction.getAxis() == Direction.Axis.X ? target.getPosX() + xCount : target.getPosX() - xCount, target.getPosY(), direction.getAxis() == Direction.Axis.Z ? target.getPosZ() + zCount : target.getPosZ() - zCount);
-            for (Object e : world.getEntitiesWithinAABBExcludingEntity(target, new AxisAlignedBB(pos.getX() - 6, pos.getY() - 3, pos.getZ() - 6, pos.getX() + 6, pos.getY() + 3, pos.getZ() + 6))) {
-                if (e instanceof LivingEntity && !((LivingEntity) e).isPotionActive(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) e).isPotionActive(EffectInit.COLD_SHIELD.get())) {
+        if (target instanceof PlayerEntity)
+            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, 6, 3))
+                if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
                     b = true;
-                    LivingEntity hitEntity = (LivingEntity) e;
-                    hitEntity.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 200));
+                    e.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 200));
                     if (e instanceof SheepEntity) {
                         SheepEntity entitySheep = (SheepEntity) e;
                         entitySheep.setFleeceColor(DyeColor.byId(world.rand.nextInt(16)));
                     }
                 }
-            }
-        }
         for (int x = -4; x <= 4; x++)
             for (int z = -4; z <= 4; z++) {
                 BlockPos pos = target.getPosition().add(x, -1, z);
