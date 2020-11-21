@@ -1,8 +1,10 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SurgeConfig;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
 import ihh.spellbound.init.SoundInit;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 import javax.annotation.Nonnull;
@@ -70,9 +72,13 @@ public abstract class AbstractSpell extends Item {
     }
 
     private void doSurge(PlayerEntity entity, World world) {
-        if (!entity.isCreative() && !entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && world.rand.nextInt(entity.isPotionActive(EffectInit.CHAOS.get()) ? 3 : 200) == 1) {
-            if (world.rand.nextInt(8) == 1) entity.setFire(10);
-            else entity.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200));
+        int i = entity.isPotionActive(EffectInit.chaos) ? SurgeConfig.CHAOS_CHANCE.get() : SurgeConfig.CHANCE.get();
+        if (!entity.isCreative() && !entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && i > 0 && world.rand.nextInt(i) == 1) {
+            if (!SurgeConfig.POTION.get() || SurgeConfig.FIRE.get() > 0 && world.rand.nextBoolean()) entity.setFire(SurgeConfig.FIRE.get());
+            else {
+                Collections.shuffle(SurgeConfig.EFFECTS);
+                entity.addPotionEffect(SurgeConfig.EFFECTS.get(0));
+            }
             world.playSound(entity, entity.getPosition(), SoundInit.SURGE.get(), SoundCategory.PLAYERS, 1, 1);
         }
     }
