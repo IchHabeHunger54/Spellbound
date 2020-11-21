@@ -1,10 +1,12 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class SummonWolf extends AbstractSelfSpell {
     @Override
@@ -19,7 +21,7 @@ public final class SummonWolf extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.ONE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.SUMMON_WOLF;
     }
 }

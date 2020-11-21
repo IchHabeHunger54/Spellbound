@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.BlockUtil;
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
@@ -10,6 +11,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class IcyGrip extends AbstractTargetSpell {
     @Override
@@ -27,7 +29,7 @@ public final class IcyGrip extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.ONE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.ICY_GRIP;
     }
 }

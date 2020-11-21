@@ -1,10 +1,12 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Disintegrate extends AbstractTargetSpell {
     @Override
@@ -16,7 +18,7 @@ public final class Disintegrate extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.FIVE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.DISINTEGRATE;
     }
 }

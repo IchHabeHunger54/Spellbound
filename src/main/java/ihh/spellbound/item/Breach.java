@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootParameters;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Breach extends AbstractTargetSpell {
     @Override
@@ -34,7 +36,7 @@ public final class Breach extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.TWO;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.BREACH;
     }
 }

@@ -1,7 +1,9 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class FishForm extends AbstractBeneficialPotionSpell {
     public FishForm() {
@@ -9,7 +11,7 @@ public final class FishForm extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.THREE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.FISH_FORM;
     }
 }

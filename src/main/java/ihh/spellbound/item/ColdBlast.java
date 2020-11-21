@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,6 +14,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ColdBlast extends AbstractSelfSpell {
     @Override
@@ -39,7 +41,7 @@ public final class ColdBlast extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.THREE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.COLD_BLAST;
     }
 }

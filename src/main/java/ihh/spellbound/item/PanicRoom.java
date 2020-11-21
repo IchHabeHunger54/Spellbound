@@ -1,10 +1,12 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.BlockInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class PanicRoom extends AbstractSelfSpell {
     @Override
@@ -32,7 +34,7 @@ public final class PanicRoom extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.FIVE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.PANIC_ROOM;
     }
 }

@@ -1,11 +1,13 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Push extends AbstractSelfSpell {
     @Override
@@ -29,7 +31,7 @@ public final class Push extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.ONE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.PUSH;
     }
 }

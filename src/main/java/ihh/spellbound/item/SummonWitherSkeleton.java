@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.WitherSkeletonEntity;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.Hand;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class SummonWitherSkeleton extends AbstractTargetSpell {
     @Override
@@ -19,7 +21,7 @@ public final class SummonWitherSkeleton extends AbstractTargetSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.THREE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.SUMMON_WITHER_SKELETON;
     }
 }

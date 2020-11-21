@@ -1,7 +1,9 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Haste extends AbstractBeneficialPotionSpell {
     public Haste() {
@@ -9,7 +11,7 @@ public final class Haste extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.TWO;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.HASTE;
     }
 }

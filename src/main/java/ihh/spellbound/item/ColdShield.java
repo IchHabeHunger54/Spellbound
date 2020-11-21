@@ -1,7 +1,9 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.potion.EffectInstance;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ColdShield extends AbstractBeneficialPotionSpell {
     public ColdShield() {
@@ -9,7 +11,7 @@ public final class ColdShield extends AbstractBeneficialPotionSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.ONE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.COLD_SHIELD;
     }
 }

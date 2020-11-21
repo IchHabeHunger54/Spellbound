@@ -1,11 +1,13 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.BlockInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class ObsidianWall extends AbstractSelfSpell {
     @Override
@@ -36,7 +38,7 @@ public final class ObsidianWall extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.FOUR;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.OBSIDIAN_WALL;
     }
 }

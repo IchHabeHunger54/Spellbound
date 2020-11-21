@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class WailOfTheSheWolf extends AbstractSelfSpell {
     @Override
@@ -21,7 +23,7 @@ public final class WailOfTheSheWolf extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.FIVE;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.WAIL_OF_THE_SHE_WOLF;
     }
 }

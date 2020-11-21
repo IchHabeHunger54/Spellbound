@@ -1,10 +1,12 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.LightType;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public final class Torchlight extends AbstractSelfSpell {
     @Override
@@ -17,7 +19,7 @@ public final class Torchlight extends AbstractSelfSpell {
     }
 
     @Override
-    protected Time getDefaultTime() {
-        return Time.ZERO;
+    protected ForgeConfigSpec.IntValue getTimeConfig() {
+        return SpellTimeConfig.TORCHLIGHT;
     }
 }
