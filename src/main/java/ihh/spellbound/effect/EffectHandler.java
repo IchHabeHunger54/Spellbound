@@ -1,4 +1,4 @@
-package ihh.spellbound;
+package ihh.spellbound.effect;
 
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.entity.LivingEntity;

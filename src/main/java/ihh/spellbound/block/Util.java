@@ -1,4 +1,4 @@
-package ihh.spellbound;
+package ihh.spellbound.block;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package ihh.spellbound.init;
 
-import ihh.spellbound.BaseEffect;
+import ihh.spellbound.effect.BaseEffect;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
 import net.minecraftforge.fml.RegistryObject;

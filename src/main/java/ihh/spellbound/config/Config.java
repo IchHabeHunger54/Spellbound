@@ -10,6 +10,7 @@ public class Config {
     static {
         ForgeConfigSpec.Builder b = new ForgeConfigSpec.Builder();
         SpellTimeConfig.init(b);
+        SpellConfig.init(b);
         SurgeConfig.init(b);
         config = b.build();
     }

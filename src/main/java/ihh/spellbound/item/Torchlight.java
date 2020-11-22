@@ -1,6 +1,6 @@
 package ihh.spellbound.item;
 
-import ihh.spellbound.Util;
+import ihh.spellbound.block.Util;
 import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
