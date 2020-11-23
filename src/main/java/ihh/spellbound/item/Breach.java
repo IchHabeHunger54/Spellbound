@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Blocks;
@@ -18,8 +19,9 @@ public final class Breach extends AbstractTargetSpell {
             target.removeActivePotionEffect(EffectInit.SURGE_SHIELD.get());
             b = true;
         }
-        for (int x = -1; x <= 1; x++)
-            for (int z = -1; z <= 1; z++)
+        int i = SpellConfig.BREACH_RANGE.get();
+        for (int x = -i; x <= i; x++)
+            for (int z = -i; z <= i; z++)
                 b = Util.replaceBlock(world, new BlockPos(target.getPositionVec().add(x, -1, z)), Blocks.AIR, true) || b;
         return b;
     }

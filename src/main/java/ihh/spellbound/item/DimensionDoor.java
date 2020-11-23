@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ public final class DimensionDoor extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         Direction direction = target.getHorizontalFacing();
-        int amount = world.rand.nextInt(200) + 100;
+        int amount = SpellConfig.DIMENSION_DOOR_MIN.get() + world.rand.nextInt(SpellConfig.DIMENSION_DOOR_MAX.get() - SpellConfig.DIMENSION_DOOR_MIN.get());
         double x = 0;
         double z = 0;
         if (direction == Direction.NORTH) {

@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.entity.LivingEntity;
@@ -18,19 +19,19 @@ public final class ElementalFury extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, 8, 8))
+            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, SpellConfig.ELEMENTAL_FURY_HORIZONTAL.get(), SpellConfig.ELEMENTAL_FURY_VERTICAL.get()))
                 if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
                     int r = world.rand.nextInt(3);
                     if (r == 0) {
-                        e.attackEntityFrom(DamageSource.MAGIC, 10);
-                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 1200));
+                        e.attackEntityFrom(DamageSource.MAGIC, SpellConfig.COLD_BLAST_DAMAGE.get());
+                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, SpellConfig.COLD_BLAST_DURATION.get()));
                     }
                     if (r == 1) {
-                        e.attackEntityFrom(DamageSource.ON_FIRE, 10);
+                        e.attackEntityFrom(DamageSource.ON_FIRE, SpellConfig.GREATER_FIREBALL_DAMAGE.get());
                         world.createExplosion(e, e.getPosX(), e.getPosY(), e.getPosZ(), 5, true, Explosion.Mode.BREAK);
                     }
                     if (r == 2) {
-                        e.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 10);
+                        e.attackEntityFrom(DamageSource.LIGHTNING_BOLT, SpellConfig.AREA_LIGHTNING_DAMAGE.get());
                         world.addLightningBolt(new LightningBoltEntity(world, e.getPosX(), e.getPosY(), e.getPosZ(), false));
                     }
                 }

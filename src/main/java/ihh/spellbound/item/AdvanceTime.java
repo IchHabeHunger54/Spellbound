@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.IGrowable;
 import net.minecraft.entity.LivingEntity;
@@ -12,10 +13,11 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public final class AdvanceTime extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        world.setDayTime((world.getDayTime() + world.rand.nextInt(24000)));
-        for (BlockPos b : Util.getBlocksInRange(world, target.getPosX(), target.getPosY(), target.getPosZ(), 32))
-            if (world.getBlockState(b).getBlock() instanceof IGrowable)
-                ((IGrowable) world.getBlockState(b).getBlock()).grow(world, world.rand, b, world.getBlockState(b));
+        world.setDayTime((world.getDayTime() + Math.max(SpellConfig.ADVANCE_TIME_MIN.get(), 1) + world.rand.nextInt(Math.max(SpellConfig.ADVANCE_TIME_MAX.get() - SpellConfig.ADVANCE_TIME_MIN.get(), 1))));
+        if (SpellConfig.ADVANCE_TIME_RANGE.get() > 0)
+            for (BlockPos b : Util.getBlocksInRange(world, target.getPosX(), target.getPosY(), target.getPosZ(), SpellConfig.ADVANCE_TIME_RANGE.get()))
+                if (world.getBlockState(b).getBlock() instanceof IGrowable)
+                    ((IGrowable) world.getBlockState(b).getBlock()).grow(world, world.rand, b, world.getBlockState(b));
         return true;
     }
 

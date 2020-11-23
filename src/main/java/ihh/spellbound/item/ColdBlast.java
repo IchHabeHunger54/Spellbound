@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Block;
@@ -20,24 +21,25 @@ public final class ColdBlast extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         Direction direction = target.getHorizontalFacing();
-        for (int i = 2; i < 14; i++) {
+        boolean r = false;
+        for (int i = 2; i < SpellConfig.COLD_BLAST_RANGE.get(); i++) {
             int x = direction.getAxis() == Direction.Axis.X ? i : 0;
             int z = direction.getAxis() == Direction.Axis.Z ? i : 0;
             BlockPos pos = new BlockPos(direction == Direction.EAST ? target.getPosX() + x : direction == Direction.WEST ? target.getPosX() - x : target.getPosX(), target.getPosY(), direction == Direction.SOUTH ? target.getPosZ() + z : direction == Direction.NORTH ? target.getPosZ() - z : target.getPosZ());
             Block b = world.getBlockState(pos).getBlock();
-            if (target instanceof PlayerEntity)
-                for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, 6, 3))
-                    if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !e.isPotionActive(EffectInit.COLD_SHIELD.get())) {
-                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 1200));
-                        e.attackEntityFrom(DamageSource.MAGIC, 10);
-                        e.extinguish();
-                    }
             if (b.isAir(world.getBlockState(pos), world, pos) || b == Blocks.FIRE) {
                 if (world.getBlockState(pos.down()).isOpaqueCube(world, pos.down()))
-                    world.setBlockState(pos, Blocks.SNOW.getDefaultState());
+                    r = world.setBlockState(pos, Blocks.SNOW.getDefaultState()) || r;
             } else break;
+            if (target instanceof PlayerEntity)
+                for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, SpellConfig.COLD_BLAST_HORIZONTAL.get(), SpellConfig.COLD_BLAST_VERTICAL.get()))
+                    if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !e.isPotionActive(EffectInit.COLD_SHIELD.get())) {
+                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, SpellConfig.COLD_BLAST_DURATION.get()));
+                        e.attackEntityFrom(DamageSource.MAGIC, SpellConfig.COLD_BLAST_DAMAGE.get());
+                        e.extinguish();
+                    }
         }
-        return true;
+        return r;
     }
 
     @Override

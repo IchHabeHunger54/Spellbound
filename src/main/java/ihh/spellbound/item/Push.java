@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,15 +15,9 @@ public final class Push extends AbstractSelfSpell {
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
         if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, 10, 3)) {
-                e.attackEntityFrom(DamageSource.MAGIC, 0);
-                double deltaX = e.getPosX() - target.getPosX();
-                double deltaZ = e.getPosZ() - target.getPosZ();
-                while (deltaX * deltaX + deltaZ * deltaZ < 1E-4) {
-                    deltaZ = (Math.random() - Math.random()) * 0.01;
-                    deltaX = (Math.random() - Math.random()) * 0.01;
-                }
-                e.knockBack(target, 10, -deltaX, -deltaZ);
+            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, SpellConfig.PUSH_HORIZONTAL.get(), SpellConfig.PUSH_VERTICAL.get())) {
+                e.attackEntityFrom(DamageSource.MAGIC, SpellConfig.PUSH_DAMAGE.get());
+                e.knockBack(target, SpellConfig.PUSH_STRENGTH.get(), target.getPosX() - e.getPosX(), target.getPosZ() - e.getPosZ());
                 b = true;
             }
         return b;

@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Blocks;
@@ -17,11 +18,11 @@ public final class IcyGrip extends AbstractTargetSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.COLD_SHIELD.get())) {
-            for (BlockPos pos : Util.getBlocksInRange(world, target.getPosX(), target.getPosY(), target.getPosZ(), 3, Blocks.AIR, Blocks.FIRE, Blocks.SNOW))
+            for (BlockPos pos : Util.getBlocksInRange(world, target.getPosX(), target.getPosY(), target.getPosZ(), SpellConfig.ICY_GRIP_RANGE.get(), Blocks.AIR, Blocks.FIRE, Blocks.SNOW))
                 if (world.getBlockState(pos.down()).isOpaqueCube(world, pos))
                     world.setBlockState(pos, Blocks.SNOW.getDefaultState());
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 1200));
-            target.attackEntityFrom(DamageSource.MAGIC, 4);
+            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, SpellConfig.ICY_GRIP_DURATION.get()));
+            target.attackEntityFrom(DamageSource.MAGIC, SpellConfig.ICY_GRIP_DAMAGE.get());
             target.extinguish();
             return true;
         }

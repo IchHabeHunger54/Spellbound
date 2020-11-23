@@ -1,5 +1,6 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +14,7 @@ public final class Fireball extends AbstractTargetSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.FIRE_SHIELD.get())) {
-            target.attackEntityFrom(DamageSource.ON_FIRE, 6);
+            target.attackEntityFrom(DamageSource.ON_FIRE, SpellConfig.FIREBALL_DAMAGE.get());
             world.createExplosion(target, target.getPosX(), target.getPosY(), target.getPosZ(), 3, true, Explosion.Mode.DESTROY);
             return true;
         }

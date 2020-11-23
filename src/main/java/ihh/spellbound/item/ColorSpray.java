@@ -1,6 +1,7 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.block.Util;
+import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import java.util.Arrays;
@@ -23,18 +24,19 @@ public final class ColorSpray extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
+        int i = SpellConfig.COLOR_SPRAY_HORIZONTAL.get();
         if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, 6, 3))
+            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, i, SpellConfig.COLOR_SPRAY_VERTICAL.get()))
                 if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
                     b = true;
-                    e.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 200));
+                    e.addPotionEffect(new EffectInstance(Effects.BLINDNESS, SpellConfig.COLOR_SPRAY_DURATION.get()));
                     if (e instanceof SheepEntity) {
-                        SheepEntity entitySheep = (SheepEntity) e;
-                        entitySheep.setFleeceColor(DyeColor.byId(world.rand.nextInt(16)));
+                        SheepEntity s = (SheepEntity) e;
+                        s.setFleeceColor(DyeColor.byId(world.rand.nextInt(16)));
                     }
                 }
-        for (int x = -4; x <= 4; x++)
-            for (int z = -4; z <= 4; z++) {
+        for (int x = -i; x <= i; x++)
+            for (int z = -i; z <= i; z++) {
                 BlockPos pos = target.getPosition().add(x, -1, z);
                 if (Arrays.asList(WOOL).contains(world.getBlockState(pos).getBlock())) {
                     world.setBlockState(pos, WOOL[world.rand.nextInt(16)].getDefaultState());
