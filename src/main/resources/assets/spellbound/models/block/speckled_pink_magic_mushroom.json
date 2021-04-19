@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "spellbound:block/speckled_pink_magic_mushroom"
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "T#T",
+    "TTT"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:dusts/redstone"
+    },
+    "T": {
+      "item": "spellbound:bedrock_wall"
+    }
+  },
+  "result": {
+    "item": "spellbound:panic_room"
+  }
+}

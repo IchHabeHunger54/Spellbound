@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:bone_block"
+    },
+    "T": {
+      "item": "spellbound:summon_skeleton"
+    }
+  },
+  "result": {
+    "item": "spellbound:summon_wither_skeleton"
+  }
+}

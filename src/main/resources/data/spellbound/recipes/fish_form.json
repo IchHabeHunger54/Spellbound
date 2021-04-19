@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:fishes"
+    },
+    "T": {
+      "item": "spellbound:mundane_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:fish_form"
+  }
+}

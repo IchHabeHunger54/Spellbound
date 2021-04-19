@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:phantom_membrane"
+    },
+    "T": {
+      "item": "spellbound:instant_levitation"
+    }
+  },
+  "result": {
+    "item": "spellbound:flight"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:glass_panes"
+    },
+    "T": {
+      "item": "spellbound:protection_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:blink"
+  }
+}

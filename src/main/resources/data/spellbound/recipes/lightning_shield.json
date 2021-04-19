@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#T#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "spellbound:base_tablet"
+    },
+    "T": {
+      "item": "spellbound:lightning_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:lightning_shield"
+  }
+}

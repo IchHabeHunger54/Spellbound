@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " M ",
+    "#T#",
+    " R "
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:minecart"
+    },
+    "#": {
+      "item": "minecraft:powered_rail"
+    },
+    "R": {
+      "item": "minecraft:redstone_torch"
+    },
+    "T": {
+      "item": "spellbound:mundane_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:haste"
+  }
+}

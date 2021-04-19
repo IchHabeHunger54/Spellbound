@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "#T#",
+    " C "
+  ],
+  "key": {
+    "D": {
+      "tag": "forge:gems/diamond"
+    },
+    "#": {
+      "item": "minecraft:cookie"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    },
+    "T": {
+      "item": "spellbound:mundane_tablet"
+    }
+  },
+  "result": {
+    "item": "spellbound:cookie_chest"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "CRL",
+    " S "
+  ],
+  "key": {
+    "F": {
+      "item": "spellbound:fire_shield"
+    },
+    "C": {
+      "item": "spellbound:cold_shield"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "L": {
+      "item": "spellbound:lightning_shield"
+    },
+    "S": {
+      "item": "spellbound:surge_shield"
+    }
+  },
+  "result": {
+    "item": "spellbound:spell_shield"
+  }
+}
