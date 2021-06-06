@@ -31,8 +31,8 @@ public final class CookieChest extends AbstractSelfSpell {
         }
         if (world.isAirBlock(pos)) {
             world.setBlockState(pos, Blocks.CHEST.getDefaultState());
-            IInventory inv = ChestBlock.func_226916_a_(((ChestBlock) world.getBlockState(pos).getBlock()), world.getBlockState(pos), world, pos, true);
-            for (int i = 0; i < inv.getSizeInventory(); i++)
+            IInventory inv = ChestBlock.getChestInventory(((ChestBlock) world.getBlockState(pos).getBlock()), world.getBlockState(pos), world, pos, true);
+            if (inv != null) for (int i = 0; i < inv.getSizeInventory(); i++)
                 inv.setInventorySlotContents(i, new ItemStack(Items.COOKIE, 64));
             return true;
         }

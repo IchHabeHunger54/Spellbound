@@ -1,12 +1,13 @@
 package ihh.spellbound.block;
 
-import java.util.Random;
-import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
+
+import java.util.Random;
+import javax.annotation.Nonnull;
 
 public class DecayingBlock extends Block {
     public DecayingBlock(Block b) {

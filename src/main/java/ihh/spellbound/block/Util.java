@@ -1,7 +1,5 @@
 package ihh.spellbound.block;
 
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
@@ -9,18 +7,22 @@ import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameters;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootParameters;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Util {
     public static ArrayList<BlockPos> getBlocksInRange(World world, double x, double y, double z, int distance) {
         ArrayList<BlockPos> list = new ArrayList<>();
-        for (Block block : ForgeRegistries.BLOCKS.getValues().toArray(new Block[]{}))
+        for (Block block : ForgeRegistries.BLOCKS.getValues().toArray(new Block[0]))
             getBlocksInRange(world, (int) x, (int) y, (int) z, distance, list, block);
         return list;
     }
@@ -62,7 +64,7 @@ public final class Util {
     public static boolean replaceBlock(World world, BlockPos pos, BlockState block, boolean drop) {
         if (world.getBlockState(pos).getBlockHardness(world, pos) >= 0) {
             if (drop)
-                for (ItemStack i : new ArrayList<>(world.getBlockState(pos).getDrops((new LootContext.Builder((ServerWorld) world)).withRandom(world.rand).withParameter(LootParameters.POSITION, pos))))
+                for (ItemStack i : new ArrayList<>(world.getBlockState(pos).getDrops((new LootContext.Builder((ServerWorld) world)).withRandom(world.rand).withParameter(LootParameters.ORIGIN, new Vector3d(pos.getX(), pos.getY(), pos.getZ())))))
                     world.addEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), i));
             world.setBlockState(pos, block);
             return true;

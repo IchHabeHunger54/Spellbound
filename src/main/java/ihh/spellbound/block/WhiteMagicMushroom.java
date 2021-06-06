@@ -2,8 +2,9 @@ package ihh.spellbound.block;
 
 import com.google.common.collect.Lists;
 import ihh.spellbound.init.BlockInit;
-import java.util.ArrayList;
 import net.minecraft.block.Block;
+
+import java.util.ArrayList;
 
 public class WhiteMagicMushroom extends MagicMushroom {
     @Override

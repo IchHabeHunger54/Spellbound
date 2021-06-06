@@ -1,10 +1,6 @@
 package ihh.spellbound.block;
 
 import com.google.common.collect.Lists;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
-import javax.annotation.Nonnull;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
@@ -18,6 +14,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import javax.annotation.Nonnull;
 
 public abstract class MagicMushroom extends BushBlock {
     private static final VoxelShape SHAPE = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);

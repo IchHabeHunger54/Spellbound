@@ -4,18 +4,12 @@ import ihh.spellbound.config.SurgeConfig;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
 import ihh.spellbound.init.SoundInit;
-import java.util.Collections;
-import java.util.List;
-import java.util.function.Supplier;
-import javax.annotation.Nonnull;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -25,6 +19,11 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeConfigSpec;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Supplier;
+import javax.annotation.Nonnull;
 
 public abstract class AbstractSpell extends Item {
     protected AbstractSpell() {
@@ -74,7 +73,8 @@ public abstract class AbstractSpell extends Item {
     private void doSurge(PlayerEntity entity, World world) {
         int i = entity.isPotionActive(EffectInit.chaos) ? SurgeConfig.CHAOS_CHANCE.get() : SurgeConfig.CHANCE.get();
         if (!entity.isCreative() && !entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && i > 0 && world.rand.nextInt(i) == 1) {
-            if (!SurgeConfig.POTION.get() || SurgeConfig.FIRE.get() > 0 && world.rand.nextBoolean()) entity.setFire(SurgeConfig.FIRE.get());
+            if (!SurgeConfig.POTION.get() || SurgeConfig.FIRE.get() > 0 && world.rand.nextBoolean())
+                entity.setFire(SurgeConfig.FIRE.get());
             else {
                 Collections.shuffle(SurgeConfig.EFFECTS);
                 entity.addPotionEffect(SurgeConfig.EFFECTS.get(0));

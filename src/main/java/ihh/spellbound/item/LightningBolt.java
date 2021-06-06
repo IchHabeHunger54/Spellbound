@@ -3,6 +3,7 @@ package ihh.spellbound.item;
 import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,10 @@ public final class LightningBolt extends AbstractTargetSpell {
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.LIGHTNING_SHIELD.get())) {
             target.attackEntityFrom(DamageSource.LIGHTNING_BOLT, SpellConfig.LIGHTNING_BOLT_DAMAGE.get());
-            world.addLightningBolt(new LightningBoltEntity(world, target.getPosX(), target.getPosY(), target.getPosZ(), false));
+            LightningBoltEntity entity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
+            entity.setEffectOnly(false);
+            entity.setPosition(target.getPosX(), target.getPosY(), target.getPosZ());
+            world.addEntity(entity);
             return true;
         }
         return false;

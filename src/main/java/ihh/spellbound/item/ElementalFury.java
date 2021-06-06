@@ -4,6 +4,7 @@ import ihh.spellbound.block.Util;
 import ihh.spellbound.config.SpellConfig;
 import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.LightningBoltEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +33,10 @@ public final class ElementalFury extends AbstractSelfSpell {
                     }
                     if (r == 2) {
                         e.attackEntityFrom(DamageSource.LIGHTNING_BOLT, SpellConfig.AREA_LIGHTNING_DAMAGE.get());
-                        world.addLightningBolt(new LightningBoltEntity(world, e.getPosX(), e.getPosY(), e.getPosZ(), false));
+                        LightningBoltEntity entity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
+                        entity.setEffectOnly(false);
+                        entity.setPosition(e.getPosX(), e.getPosY(), e.getPosZ());
+                        world.addEntity(entity);
                     }
                 }
         return true;

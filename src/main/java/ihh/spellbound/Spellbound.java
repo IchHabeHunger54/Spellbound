@@ -3,7 +3,6 @@ package ihh.spellbound;
 import ihh.spellbound.config.Config;
 import ihh.spellbound.init.IInit;
 import ihh.spellbound.init.ItemInit;
-import javax.annotation.Nonnull;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -11,8 +10,10 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import javax.annotation.Nonnull;
+
 @Mod("spellbound")
-public class Spellbound {
+public final class Spellbound {
     public static final ItemGroup GROUP = new ItemGroup("spellbound") {
         @Nonnull
         @Override

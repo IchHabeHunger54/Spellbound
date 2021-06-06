@@ -10,25 +10,8 @@ import net.minecraftforge.common.ForgeConfigSpec;
 public final class ChangeWeather extends AbstractSelfSpell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        if (world.isThundering()) {
-            world.getWorldInfo().setClearWeatherTime(SpellConfig.CHANGE_WEATHER_DURATION.get());
-            world.getWorldInfo().setRainTime(0);
-            world.getWorldInfo().setThunderTime(0);
-            world.getWorldInfo().setRaining(false);
-            world.getWorldInfo().setThundering(false);
-        } else if (world.isRaining()) {
-            world.getWorldInfo().setClearWeatherTime(0);
-            world.getWorldInfo().setRainTime(SpellConfig.CHANGE_WEATHER_DURATION.get());
-            world.getWorldInfo().setThunderTime(SpellConfig.CHANGE_WEATHER_DURATION.get());
-            world.getWorldInfo().setRaining(true);
-            world.getWorldInfo().setThundering(true);
-        } else {
-            world.getWorldInfo().setClearWeatherTime(0);
-            world.getWorldInfo().setRainTime(SpellConfig.CHANGE_WEATHER_DURATION.get());
-            world.getWorldInfo().setThunderTime(0);
-            world.getWorldInfo().setRaining(true);
-            world.getWorldInfo().setThundering(false);
-        }
+        if (world.isThundering()) world.setWeather(SpellConfig.CHANGE_WEATHER_DURATION.get(), 0, false, false);
+        else world.setWeather(0, SpellConfig.CHANGE_WEATHER_DURATION.get(), true, world.isRaining());
         return true;
     }
 

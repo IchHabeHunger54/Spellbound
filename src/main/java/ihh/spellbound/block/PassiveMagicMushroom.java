@@ -1,7 +1,8 @@
 package ihh.spellbound.block;
 
-import java.util.ArrayList;
 import net.minecraft.block.Block;
+
+import java.util.ArrayList;
 
 public class PassiveMagicMushroom extends MagicMushroom {
     @Override

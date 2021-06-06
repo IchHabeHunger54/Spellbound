@@ -17,7 +17,7 @@ public final class Push extends AbstractSelfSpell {
         if (target instanceof PlayerEntity)
             for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, SpellConfig.PUSH_HORIZONTAL.get(), SpellConfig.PUSH_VERTICAL.get())) {
                 e.attackEntityFrom(DamageSource.MAGIC, SpellConfig.PUSH_DAMAGE.get());
-                e.knockBack(target, SpellConfig.PUSH_STRENGTH.get(), target.getPosX() - e.getPosX(), target.getPosZ() - e.getPosZ());
+                e.applyKnockback(SpellConfig.PUSH_STRENGTH.get(), target.getPosX() - e.getPosX(), target.getPosZ() - e.getPosZ());
                 b = true;
             }
         return b;

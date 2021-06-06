@@ -17,6 +17,6 @@ public class Config {
 
     @SubscribeEvent
     public static void reload(ModConfig.ModConfigEvent e) {
-        if(e.getConfig().getType() == ModConfig.Type.SERVER) SurgeConfig.reload();
+        if (e.getConfig().getType() == ModConfig.Type.SERVER) SurgeConfig.reload();
     }
 }
