@@ -9,7 +9,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class Disintegrate extends Spell {
     public Disintegrate() {
-        super(Config.DISINTEGRATE_USE_DURATION, Type.SELF);
+        super(Config.DISINTEGRATE_USE_DURATION, Type.TARGET);
     }
 
     @Override

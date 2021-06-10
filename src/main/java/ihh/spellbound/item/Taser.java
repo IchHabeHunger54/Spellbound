@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class Taser extends Spell {
     public Taser() {
-        super(Config.TASER_USE_DURATION, Type.SELF);
+        super(Config.TASER_USE_DURATION, Type.TARGET);
     }
 
     @Override

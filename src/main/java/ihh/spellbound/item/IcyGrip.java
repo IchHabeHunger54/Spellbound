@@ -14,7 +14,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class IcyGrip extends Spell {
     public IcyGrip() {
-        super(Config.ICY_GRIP_USE_DURATION, Type.SELF);
+        super(Config.ICY_GRIP_USE_DURATION, Type.TARGET);
     }
 
     @Override

@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class SummonWitherSkeleton extends Spell {
     public SummonWitherSkeleton() {
-        super(Config.SUMMON_WITHER_SKELETON_USE_DURATION, Type.SELF);
+        super(Config.SUMMON_WITHER_SKELETON_USE_DURATION, Type.TARGET);
     }
 
     @Override

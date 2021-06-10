@@ -9,7 +9,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class SummonWolf extends Spell {
     public SummonWolf() {
-        super(Config.SUMMON_WOLF_USE_DURATION, Type.SELF);
+        super(Config.SUMMON_WOLF_USE_DURATION, Type.TARGET);
     }
 
     @Override

@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class FlamingHands extends Spell {
     public FlamingHands() {
-        super(Config.FLAMING_HANDS_USE_DURATION, Type.SELF);
+        super(Config.FLAMING_HANDS_USE_DURATION, Type.TARGET);
     }
 
     @Override

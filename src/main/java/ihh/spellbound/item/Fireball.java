@@ -10,7 +10,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class Fireball extends Spell {
     public Fireball() {
-        super(Config.FIREBALL_USE_DURATION, Type.SELF);
+        super(Config.FIREBALL_USE_DURATION, Type.TARGET);
     }
 
     @Override

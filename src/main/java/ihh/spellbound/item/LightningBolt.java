@@ -11,7 +11,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class LightningBolt extends Spell {
     public LightningBolt() {
-        super(Config.LIGHTNING_BOLT_USE_DURATION, Type.SELF);
+        super(Config.LIGHTNING_BOLT_USE_DURATION, Type.TARGET);
     }
 
     @Override
