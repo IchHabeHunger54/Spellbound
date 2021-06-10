@@ -11,16 +11,11 @@ import javax.annotation.Nonnull;
 
 public class DecayingBlock extends Block {
     public DecayingBlock(Block b) {
-        super(Block.Properties.from(b));
+        super(Block.Properties.from(b).tickRandomly());
     }
 
     @Override
-    public void tick(@Nonnull BlockState state, @Nonnull ServerWorld worldIn, @Nonnull BlockPos pos, Random rand) {
+    public void randomTick(@Nonnull BlockState state, @Nonnull ServerWorld worldIn, @Nonnull BlockPos pos, Random rand) {
         if (rand.nextBoolean()) worldIn.setBlockState(pos, Blocks.AIR.getDefaultState());
-    }
-
-    @Override
-    public boolean ticksRandomly(@Nonnull BlockState state) {
-        return true;
     }
 }

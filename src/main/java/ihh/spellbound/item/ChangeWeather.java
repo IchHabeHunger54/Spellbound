@@ -1,22 +1,19 @@
 package ihh.spellbound.item;
 
-import ihh.spellbound.config.SpellConfig;
-import ihh.spellbound.config.SpellTimeConfig;
+import ihh.spellbound.Config;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class ChangeWeather extends AbstractSelfSpell {
-    @Override
-    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        if (world.isThundering()) world.setWeather(SpellConfig.CHANGE_WEATHER_DURATION.get(), 0, false, false);
-        else world.setWeather(0, SpellConfig.CHANGE_WEATHER_DURATION.get(), true, world.isRaining());
-        return true;
+public final class ChangeWeather extends Spell {
+    public ChangeWeather() {
+        super(Config.CHANGE_WEATHER_USE_DURATION, Type.SELF);
     }
 
     @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.CHANGE_WEATHER;
+    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
+        if (world.isThundering()) world.setWeather(Config.CHANGE_WEATHER_DURATION.get(), 0, false, false);
+        else world.setWeather(0, Config.CHANGE_WEATHER_DURATION.get(), true, world.isRaining());
+        return true;
     }
 }

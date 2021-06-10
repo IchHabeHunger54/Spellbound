@@ -1,16 +1,19 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
-import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class StoneWall extends AbstractSelfSpell {
+public final class StoneWall extends Spell {
+    public StoneWall() {
+        super(Config.STONE_WALL_USE_DURATION, Type.SELF);
+    }
+
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
@@ -35,10 +38,5 @@ public final class StoneWall extends AbstractSelfSpell {
                     b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(3, h, w)), Blocks.STONE) || b;
             }
         return b;
-    }
-
-    @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.STONE_WALL;
     }
 }

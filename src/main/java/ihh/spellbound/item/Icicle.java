@@ -1,8 +1,7 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
-import ihh.spellbound.config.SpellConfig;
-import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -15,14 +14,17 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class Icicle extends AbstractSelfSpell {
+public final class Icicle extends Spell {
+    public Icicle() {
+        super(Config.ICICLE_USE_DURATION, Type.SELF);
+    }
+
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         Direction direction = target.getHorizontalFacing();
         boolean r = false;
-        for (int i = 2; i < SpellConfig.ICICLE_RANGE.get(); i++) {
+        for (int i = 2; i < Config.ICICLE_RANGE.get(); i++) {
             int x = direction.getAxis() == Direction.Axis.X ? i : 0;
             int z = direction.getAxis() == Direction.Axis.Z ? i : 0;
             BlockPos pos = new BlockPos(direction == Direction.EAST ? target.getPosX() + x : direction == Direction.WEST ? target.getPosX() - x : target.getPosX(), target.getPosY(), direction == Direction.SOUTH ? target.getPosZ() + z : direction == Direction.NORTH ? target.getPosZ() - z : target.getPosZ());
@@ -32,18 +34,13 @@ public final class Icicle extends AbstractSelfSpell {
                     r = world.setBlockState(pos, Blocks.SNOW.getDefaultState()) || r;
             } else break;
             if (target instanceof PlayerEntity)
-                for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, SpellConfig.ICICLE_HORIZONTAL.get(), SpellConfig.ICICLE_VERTICAL.get()))
+                for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, Config.ICICLE_HORIZONTAL.get(), Config.ICICLE_VERTICAL.get()))
                     if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !e.isPotionActive(EffectInit.COLD_SHIELD.get())) {
-                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, SpellConfig.ICICLE_DURATION.get()));
-                        e.attackEntityFrom(DamageSource.MAGIC, SpellConfig.ICICLE_DAMAGE.get());
+                        e.addPotionEffect(new EffectInstance(Effects.SLOWNESS, Config.ICICLE_DURATION.get()));
+                        e.attackEntityFrom(DamageSource.MAGIC, Config.ICICLE_DAMAGE.get());
                         e.extinguish();
                     }
         }
         return r;
-    }
-
-    @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.ICICLE;
     }
 }

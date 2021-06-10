@@ -1,15 +1,18 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
-import ihh.spellbound.config.SpellTimeConfig;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.LightType;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class Torchlight extends AbstractSelfSpell {
+public final class Torchlight extends Spell {
+    public Torchlight() {
+        super(Config.TORCHLIGHT_USE_DURATION, Type.SELF);
+    }
+
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         if (world.getLightFor(LightType.BLOCK, target.getPosition()) < 8) {
@@ -17,10 +20,5 @@ public final class Torchlight extends AbstractSelfSpell {
             return true;
         }
         return false;
-    }
-
-    @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.TORCHLIGHT;
     }
 }

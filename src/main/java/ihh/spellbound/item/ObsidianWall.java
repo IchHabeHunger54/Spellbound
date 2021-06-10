@@ -1,16 +1,19 @@
 package ihh.spellbound.item;
 
+import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
-import ihh.spellbound.config.SpellTimeConfig;
 import ihh.spellbound.init.BlockInit;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class ObsidianWall extends AbstractSelfSpell {
+public final class ObsidianWall extends Spell {
+    public ObsidianWall() {
+        super(Config.OBSIDIAN_WALL_USE_DURATION, Type.SELF);
+    }
+
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
@@ -35,10 +38,5 @@ public final class ObsidianWall extends AbstractSelfSpell {
                     b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(3, h, w)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
             }
         return b;
-    }
-
-    @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.OBSIDIAN_WALL;
     }
 }

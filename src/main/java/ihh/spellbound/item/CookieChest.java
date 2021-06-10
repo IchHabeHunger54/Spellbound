@@ -1,6 +1,6 @@
 package ihh.spellbound.item;
 
-import ihh.spellbound.config.SpellTimeConfig;
+import ihh.spellbound.Config;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ChestBlock;
 import net.minecraft.entity.LivingEntity;
@@ -9,9 +9,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class CookieChest extends AbstractSelfSpell {
+public final class CookieChest extends Spell {
+    public CookieChest() {
+        super(Config.COOKIE_CHEST_USE_DURATION, Type.SELF);
+    }
+
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         BlockPos pos = target.getPosition();
@@ -37,10 +40,5 @@ public final class CookieChest extends AbstractSelfSpell {
             return true;
         }
         return false;
-    }
-
-    @Override
-    protected ForgeConfigSpec.IntValue getTimeConfig() {
-        return SpellTimeConfig.COOKIE_CHEST;
     }
 }

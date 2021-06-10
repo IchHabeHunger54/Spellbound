@@ -4,11 +4,13 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeConfigSpec;
 
-public abstract class AbstractHarmfulPotionSpell extends AbstractTargetSpell {
+public class PotionSpell extends Spell {
     private final EffectInstance effect;
 
-    public AbstractHarmfulPotionSpell(EffectInstance instance) {
+    public PotionSpell(ForgeConfigSpec.IntValue timeConfig, Type type, EffectInstance instance) {
+        super(timeConfig, type);
         effect = instance;
     }
 

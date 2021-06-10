@@ -14,7 +14,7 @@ public interface IInit {
     DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, "spellbound");
     DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, "spellbound");
 
-    static void register(IEventBus bus) {
+    static void init(IEventBus bus) {
         ItemInit.init();
         BlockInit.init();
         EffectInit.init();

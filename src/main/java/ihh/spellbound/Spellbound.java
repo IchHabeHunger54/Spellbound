@@ -1,6 +1,5 @@
 package ihh.spellbound;
 
-import ihh.spellbound.config.Config;
 import ihh.spellbound.init.IInit;
 import ihh.spellbound.init.ItemInit;
 import net.minecraft.item.ItemGroup;
@@ -23,7 +22,7 @@ public final class Spellbound {
     };
 
     public Spellbound() {
-        IInit.register(FMLJavaModLoadingContext.get().getModEventBus());
+        IInit.init(FMLJavaModLoadingContext.get().getModEventBus());
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.config);
     }
 }
