@@ -27,19 +27,15 @@ public final class ColorSpray extends Spell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
-        int i = Config.COLOR_SPRAY_HORIZONTAL.get();
         if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, i, Config.COLOR_SPRAY_VERTICAL.get()))
+            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, Config.COLOR_SPRAY_HORIZONTAL.get(), Config.COLOR_SPRAY_VERTICAL.get()))
                 if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
                     b = true;
                     e.addPotionEffect(new EffectInstance(Effects.BLINDNESS, Config.COLOR_SPRAY_DURATION.get()));
-                    if (e instanceof SheepEntity) {
-                        SheepEntity s = (SheepEntity) e;
-                        s.setFleeceColor(DyeColor.byId(world.rand.nextInt(16)));
-                    }
+                    if (e instanceof SheepEntity) ((SheepEntity) e).setFleeceColor(DyeColor.byId(world.rand.nextInt(16)));
                 }
-        for (int x = -i; x <= i; x++)
-            for (int z = -i; z <= i; z++) {
+        for (int x = -Config.COLOR_SPRAY_HORIZONTAL.get(); x <= Config.COLOR_SPRAY_HORIZONTAL.get(); x++)
+            for (int z = -Config.COLOR_SPRAY_HORIZONTAL.get(); z <= Config.COLOR_SPRAY_HORIZONTAL.get(); z++) {
                 BlockPos pos = target.getPosition().add(x, -1, z);
                 if (Arrays.asList(WOOL).contains(world.getBlockState(pos).getBlock())) {
                     world.setBlockState(pos, WOOL[world.rand.nextInt(16)].getDefaultState());

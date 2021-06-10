@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -33,7 +34,7 @@ public final class CookieChest extends Spell {
                 break;
         }
         if (world.isAirBlock(pos)) {
-            world.setBlockState(pos, Blocks.CHEST.getDefaultState());
+            world.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, target.getAdjustedHorizontalFacing()));
             IInventory inv = ChestBlock.getChestInventory(((ChestBlock) world.getBlockState(pos).getBlock()), world.getBlockState(pos), world, pos, true);
             if (inv != null) for (int i = 0; i < inv.getSizeInventory(); i++)
                 inv.setInventorySlotContents(i, new ItemStack(Items.COOKIE, 64));

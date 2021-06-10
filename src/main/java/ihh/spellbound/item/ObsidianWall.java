@@ -17,25 +17,25 @@ public final class ObsidianWall extends Spell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
-        Direction direction = target.rotationPitch <= -60 ? Direction.UP : target.rotationPitch >= 60 ? Direction.DOWN : target.getAdjustedHorizontalFacing();
-        if (direction == Direction.UP) {
-            for (int w = -2; w < 3; w++)
-                for (int h = -2; h < 3; h++)
-                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, 3, h)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
-        } else if (direction == Direction.DOWN) {
-            for (int w = -2; w < 3; w++)
-                for (int h = -2; h < 3; h++)
+        Direction d = target.rotationPitch <= -60 ? Direction.UP : target.rotationPitch >= 60 ? Direction.DOWN : target.getAdjustedHorizontalFacing();
+        if (d == Direction.UP) {
+            for (int w = -Config.STONE_WALL_HORIZONTAL.get(); w <= Config.STONE_WALL_HORIZONTAL.get(); w++)
+                for (int h = -Config.STONE_WALL_HORIZONTAL.get(); h <= Config.STONE_WALL_HORIZONTAL.get(); h++)
+                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, Config.STONE_WALL_VERTICAL.get(), h)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
+        } else if (d == Direction.DOWN) {
+            for (int w = -Config.STONE_WALL_HORIZONTAL.get(); w <= Config.STONE_WALL_HORIZONTAL.get(); w++)
+                for (int h = -Config.STONE_WALL_HORIZONTAL.get(); h <= Config.STONE_WALL_HORIZONTAL.get(); h++)
                     b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, -1, h)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
-        } else for (int w = -3; w < 4; w++)
-            for (int h = 0; h < 3; h++) {
-                if (direction == Direction.SOUTH)
-                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, 3)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
-                if (direction == Direction.EAST)
-                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(-3, h, w)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
-                if (direction == Direction.NORTH)
-                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, -3)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
-                if (direction == Direction.WEST)
-                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(3, h, w)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
+        } else for (int w = -Config.STONE_WALL_VERTICAL.get(); w <= Config.STONE_WALL_VERTICAL.get(); w++)
+            for (int h = 0; h < Config.STONE_WALL_VERTICAL.get(); h++) {
+                if (d == Direction.SOUTH)
+                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, Config.STONE_WALL_VERTICAL.get())), BlockInit.DECAYING_OBSIDIAN.get()) || b;
+                if (d == Direction.EAST)
+                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(-Config.STONE_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
+                if (d == Direction.NORTH)
+                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(w, h, -Config.STONE_WALL_VERTICAL.get())), BlockInit.DECAYING_OBSIDIAN.get()) || b;
+                if (d == Direction.WEST)
+                    b = Util.replaceAirBlock(world, new BlockPos(target.getPositionVec().add(Config.STONE_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_OBSIDIAN.get()) || b;
             }
         return b;
     }

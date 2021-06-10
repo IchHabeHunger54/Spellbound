@@ -17,13 +17,8 @@ public final class Breach extends Spell {
     @Override
     protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
         boolean b = false;
-        if (target.isPotionActive(EffectInit.SURGE_SHIELD.get())) {
-            target.removeActivePotionEffect(EffectInit.SURGE_SHIELD.get());
-            b = true;
-        }
-        int i = Config.BREACH_RANGE.get();
-        for (int x = -i; x <= i; x++)
-            for (int z = -i; z <= i; z++)
+        for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++)
+            for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++)
                 b = Util.replaceBlock(world, new BlockPos(target.getPositionVec().add(x, -1, z)), Blocks.AIR, true) || b;
         return b;
     }

@@ -18,25 +18,30 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public final class Util {
     public static ArrayList<BlockPos> getBlocksInRange(World world, double x, double y, double z, int distance, Block... blocks) {
+        return getBlocksInRange(world, x, y, z, distance, blockState -> {
+            for (Block b : blocks) if (blockState.getBlock() == b) return true;
+            return false;
+        });
+    }
+
+    public static ArrayList<BlockPos> getBlocksInRange(World world, double x, double y, double z, int distance, Predicate<BlockState> predicate) {
         ArrayList<BlockPos> l = new ArrayList<>();
-        for (Block b : blocks) {
-            double dx = x - distance;
-            while (dx <= x + distance) {
-                double dz = z - distance;
-                while (dz <= z + distance) {
-                    double dy = y + 3;
-                    while (dy >= y) {
-                        if (world.getBlockState(new BlockPos(dx, dy, dz)).getBlock() == b)
-                            l.add(new BlockPos(dx, dy, dz));
-                        dy--;
-                    }
-                    dz++;
+        double dx = x - distance;
+        while (dx <= x + distance) {
+            double dz = z - distance;
+            while (dz <= z + distance) {
+                double dy = y + 3;
+                while (dy >= y) {
+                    if (predicate.test(world.getBlockState(new BlockPos(dx, dy, dz)))) l.add(new BlockPos(dx, dy, dz));
+                    dy--;
                 }
-                dx++;
+                dz++;
             }
+            dx++;
         }
         return l;
     }
