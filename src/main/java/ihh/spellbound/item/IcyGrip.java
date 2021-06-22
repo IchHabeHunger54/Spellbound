@@ -4,7 +4,7 @@ import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -14,18 +14,18 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class IcyGrip extends Spell {
     public IcyGrip() {
-        super(Config.ICY_GRIP_USE_DURATION, Type.TARGET);
+        super(Config.ICY_GRIP_USE_DURATION);
     }
 
     @Override
-    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
-        if (!target.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !target.isPotionActive(EffectInit.COLD_SHIELD.get())) {
-            for (BlockPos pos : Util.getBlocksInRange(world, target.getPosX(), target.getPosY(), target.getPosZ(), Config.ICY_GRIP_RANGE.get(), Blocks.AIR, Blocks.FIRE, Blocks.SNOW))
-                if (world.getBlockState(pos.down()).isOpaqueCube(world, pos))
+    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
+        if (!player.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !player.isPotionActive(EffectInit.COLD_SHIELD.get())) {
+            for (BlockPos pos : Util.getBlocksInRange(world, player.getPosX(), player.getPosY(), player.getPosZ(), Config.ICY_GRIP_RANGE.get(), Blocks.AIR))
+                if (world.getBlockState(pos.down()).isOpaqueCube(world, pos.down()))
                     world.setBlockState(pos, Blocks.SNOW.getDefaultState());
-            target.addPotionEffect(new EffectInstance(Effects.SLOWNESS, Config.ICY_GRIP_DURATION.get()));
-            target.attackEntityFrom(DamageSource.MAGIC, Config.ICY_GRIP_DAMAGE.get());
-            target.extinguish();
+            player.addPotionEffect(new EffectInstance(Effects.SLOWNESS, Config.ICY_GRIP_DURATION.get()));
+            player.attackEntityFrom(DamageSource.MAGIC, Config.ICY_GRIP_DAMAGE.get());
+            player.extinguish();
             return true;
         }
         return false;

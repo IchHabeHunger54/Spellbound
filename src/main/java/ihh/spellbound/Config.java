@@ -86,6 +86,7 @@ public final class Config {
     public static ForgeConfigSpec.IntValue FIREBALL_DAMAGE;
     public static ForgeConfigSpec.IntValue FIRE_SHIELD_DURATION;
     public static ForgeConfigSpec.IntValue FISH_FORM_DURATION;
+    public static ForgeConfigSpec.IntValue FLAMING_HANDS_DAMAGE;
     public static ForgeConfigSpec.IntValue FLAMING_HANDS_RANGE;
     public static ForgeConfigSpec.IntValue FLIGHT_DURATION;
     public static ForgeConfigSpec.IntValue GREATER_FIREBALL_DAMAGE;
@@ -238,6 +239,7 @@ public final class Config {
         FISH_FORM_DURATION = defineInt("The duration of the fish form effect (in ticks).", "duration", 1200, 0, 1000000);
         pop();
         push("flaming_hands");
+        FLAMING_HANDS_DAMAGE = defineInt("The damage.", "damage", 10, 0, Integer.MAX_VALUE);
         FLAMING_HANDS_RANGE = defineInt("The range.", "range", 3, 0, 64);
         pop();
         push("flight");

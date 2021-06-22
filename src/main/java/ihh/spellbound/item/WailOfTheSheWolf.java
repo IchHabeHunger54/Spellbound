@@ -11,18 +11,17 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class WailOfTheSheWolf extends Spell {
     public WailOfTheSheWolf() {
-        super(Config.WAIL_OF_THE_SHE_WOLF_USE_DURATION, Type.SELF);
+        super(Config.WAIL_OF_THE_SHE_WOLF_USE_DURATION);
     }
 
     @Override
-    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
+    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
         boolean b = false;
-        if (target instanceof PlayerEntity)
-            for (LivingEntity entity : Util.getEntitiesInRange(world, (PlayerEntity) target, Config.WAIL_OF_THE_SHE_WOLF_HORIZONTAL.get(), Config.WAIL_OF_THE_SHE_WOLF_VERTICAL.get()))
-                if (!entity.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
-                    b = true;
-                    entity.attackEntityFrom(DamageSource.MAGIC, Config.WAIL_OF_THE_SHE_WOLF_DAMAGE.get());
-                }
+        for (LivingEntity entity : Util.getEntitiesInRange(world, player, Config.WAIL_OF_THE_SHE_WOLF_HORIZONTAL.get(), Config.WAIL_OF_THE_SHE_WOLF_VERTICAL.get()))
+            if (!entity.isPotionActive(EffectInit.SPELL_SHIELD.get())) {
+                b = true;
+                entity.attackEntityFrom(DamageSource.MAGIC, Config.WAIL_OF_THE_SHE_WOLF_DAMAGE.get());
+            }
         return b;
     }
 }

@@ -10,18 +10,17 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class Push extends Spell {
     public Push() {
-        super(Config.PUSH_USE_DURATION, Type.SELF);
+        super(Config.PUSH_USE_DURATION);
     }
 
     @Override
-    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
+    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
         boolean b = false;
-        if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, Config.PUSH_HORIZONTAL.get(), Config.PUSH_VERTICAL.get())) {
-                e.attackEntityFrom(DamageSource.MAGIC, Config.PUSH_DAMAGE.get());
-                e.applyKnockback(Config.PUSH_STRENGTH.get(), target.getPosX() - e.getPosX(), target.getPosZ() - e.getPosZ());
-                b = true;
-            }
+        for (LivingEntity e : Util.getEntitiesInRange(world, player, Config.PUSH_HORIZONTAL.get(), Config.PUSH_VERTICAL.get())) {
+            e.attackEntityFrom(DamageSource.MAGIC, Config.PUSH_DAMAGE.get());
+            e.applyKnockback(Config.PUSH_STRENGTH.get(), player.getPosX() - e.getPosX(), player.getPosZ() - e.getPosZ());
+            b = true;
+        }
         return b;
     }
 }

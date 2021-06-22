@@ -13,22 +13,21 @@ import net.minecraft.world.server.ServerWorld;
 
 public final class AreaLightning extends Spell {
     public AreaLightning() {
-        super(Config.AREA_LIGHTNING_USE_DURATION, Type.SELF);
+        super(Config.AREA_LIGHTNING_USE_DURATION);
     }
 
     @Override
-    protected boolean use(ItemStack stack, LivingEntity target, ServerWorld world) {
+    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
         boolean b = false;
-        if (target instanceof PlayerEntity)
-            for (LivingEntity e : Util.getEntitiesInRange(world, (PlayerEntity) target, Config.AREA_LIGHTNING_HORIZONTAL.get(), Config.AREA_LIGHTNING_VERTICAL.get()))
-                if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !(e.isPotionActive(EffectInit.LIGHTNING_SHIELD.get())) && world.canBlockSeeSky(e.getPosition().down())) {
-                    e.attackEntityFrom(DamageSource.LIGHTNING_BOLT, Config.AREA_LIGHTNING_DAMAGE.get());
-                    LightningBoltEntity entity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
-                    entity.setEffectOnly(false);
-                    entity.setPosition(e.getPosX(), e.getPosY(), e.getPosZ());
-                    world.addEntity(entity);
-                    b = true;
-                }
+        for (LivingEntity e : Util.getEntitiesInRange(world, player, Config.AREA_LIGHTNING_HORIZONTAL.get(), Config.AREA_LIGHTNING_VERTICAL.get()))
+            if (!e.isPotionActive(EffectInit.SPELL_SHIELD.get()) && !(e.isPotionActive(EffectInit.LIGHTNING_SHIELD.get())) && world.canBlockSeeSky(e.getPosition().down())) {
+                e.attackEntityFrom(DamageSource.LIGHTNING_BOLT, Config.AREA_LIGHTNING_DAMAGE.get());
+                LightningBoltEntity entity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
+                entity.setEffectOnly(false);
+                entity.setPosition(e.getPosX(), e.getPosY(), e.getPosZ());
+                world.addEntity(entity);
+                b = true;
+            }
         return b;
     }
 }
