@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -67,6 +68,7 @@ public abstract class Spell extends Item {
             doSurge((PlayerEntity) entity, world);
             if (!((PlayerEntity) entity).isCreative() && b) stack.shrink(1);
             world.playSound((PlayerEntity) entity, entity.getPosition(), getTimeSound(), SoundCategory.PLAYERS, 1, 1);
+            ((PlayerEntity) entity).addStat(Stats.ITEM_USED.get(this));
         }
         return super.onItemUseFinish(stack, world, entity);
     }

@@ -51,10 +51,10 @@ public final class Util {
         return l;
     }
 
-    public static boolean replaceBlock(World world, BlockPos pos, Block block, boolean drop) {
+    public static boolean replaceBlock(ItemStack stack, World world, BlockPos pos, Block block, boolean drop) {
         if (world.getBlockState(pos).getBlockHardness(world, pos) >= 0) {
             if (drop)
-                for (ItemStack i : new ArrayList<>(world.getBlockState(pos).getDrops((new LootContext.Builder((ServerWorld) world)).withRandom(world.rand).withParameter(LootParameters.ORIGIN, new Vector3d(pos.getX(), pos.getY(), pos.getZ())))))
+                for (ItemStack i : new ArrayList<>(world.getBlockState(pos).getDrops((new LootContext.Builder((ServerWorld) world)).withRandom(world.rand).withParameter(LootParameters.TOOL, stack).withParameter(LootParameters.ORIGIN, new Vector3d(pos.getX(), pos.getY(), pos.getZ())))))
                     world.addEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), i));
             world.setBlockState(pos, block.getDefaultState());
             return true;
