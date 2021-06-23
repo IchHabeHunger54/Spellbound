@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.world.World;
@@ -30,14 +31,14 @@ public class BreachEntity extends SpellProjectileEntity {
     protected void onBlockImpact(BlockRayTraceResult result) {
         for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++)
             for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++)
-                Util.replaceBlock(getItem(), world, result.getPos(), Blocks.AIR, true);
+                Util.replaceBlock(getItem(), world, new BlockPos(result.getPos().getX() + x, result.getPos().getY(), result.getPos().getZ() + z), Blocks.AIR, true);
     }
 
     @Override
     protected void onEntityImpact(EntityRayTraceResult result) {
-        for (int x = -Config.BREACH_RANGE.get() - 1; x <= Config.BREACH_RANGE.get() + 1; x++)
-            for (int z = -Config.BREACH_RANGE.get() - 1; z <= Config.BREACH_RANGE.get() + 1; z++)
-                Util.replaceBlock(getItem(), world, result.getEntity().getPosition().down(), Blocks.AIR, true);
+        for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++)
+            for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++)
+                Util.replaceBlock(getItem(), world, new BlockPos(result.getEntity().getPosition().down().getX() + x, result.getEntity().getPosition().down().getY(), result.getEntity().getPosition().down().getZ() + z), Blocks.AIR, true);
     }
 
     @Nonnull

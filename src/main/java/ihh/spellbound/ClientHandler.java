@@ -1,7 +1,9 @@
 package ihh.spellbound;
 
+import ihh.spellbound.entity.SpellProjectileRenderer;
 import ihh.spellbound.init.BlockInit;
 import ihh.spellbound.init.EntityInit;
+import ihh.spellbound.init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -29,6 +31,6 @@ public final class ClientHandler {
         RenderTypeLookup.setRenderLayer(BlockInit.SPECKLED_RED_MAGIC_MUSHROOM.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BlockInit.WHITE_MAGIC_MUSHROOM.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BlockInit.YELLOW_MAGIC_MUSHROOM.get(), RenderType.getCutout());
-        RenderingRegistry.registerEntityRenderingHandler(EntityInit.BREACH.get(), renderer -> new SpriteRenderer<>(renderer, Minecraft.getInstance().getItemRenderer()));
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.BREACH.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.BREACH.get()));
     }
 }

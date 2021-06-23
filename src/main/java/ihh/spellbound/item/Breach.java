@@ -19,6 +19,7 @@ public final class Breach extends Spell {
     @Override
     protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
         BreachEntity entity = new BreachEntity(EntityInit.BREACH.get(), player.getPosX(), player.getPosY() + player.getEyeHeight(), player.getPosZ(), world);
+        entity.setDirectionAndMovement(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.7F, 1.0F);
         world.addEntity(entity);
         return true;
     }

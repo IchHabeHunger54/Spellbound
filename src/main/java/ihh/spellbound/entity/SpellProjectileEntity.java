@@ -5,9 +5,11 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.IRendersAsItem;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ArmorStandEntity;
 import net.minecraft.entity.projectile.ThrowableEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.IPacket;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
@@ -15,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.entity.PartEntity;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nonnull;
 
@@ -34,9 +37,16 @@ public abstract class SpellProjectileEntity extends ThrowableEntity implements I
     @Override
     protected void onImpact(@Nonnull RayTraceResult result) {
         super.onImpact(result);
-        if (result instanceof EntityRayTraceResult) onEntityImpact((EntityRayTraceResult) result);
-        if (result instanceof BlockRayTraceResult) onBlockImpact((BlockRayTraceResult) result);
-        if (!world.isRemote) remove();
+        if (!world.isRemote) {
+            if (result instanceof EntityRayTraceResult && ((EntityRayTraceResult) result).getEntity() instanceof LivingEntity && !(((EntityRayTraceResult) result).getEntity() instanceof ArmorStandEntity)) {
+                onEntityImpact((EntityRayTraceResult) result);
+                remove();
+            }
+            if (result instanceof BlockRayTraceResult) {
+                onBlockImpact((BlockRayTraceResult) result);
+                remove();
+            }
+        }
     }
 
     protected abstract void onBlockImpact(BlockRayTraceResult result);
@@ -101,5 +111,11 @@ public abstract class SpellProjectileEntity extends ThrowableEntity implements I
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
         return super.getCapability(cap);
+    }
+
+    @Nonnull
+    @Override
+    public IPacket<?> createSpawnPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
