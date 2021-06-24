@@ -6,7 +6,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public final class PotionSpell extends Spell {
+public class PotionSpell extends Spell {
     private final EffectInstance effect;
 
     public PotionSpell(ForgeConfigSpec.IntValue timeConfig, EffectInstance instance) {

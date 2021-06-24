@@ -9,7 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
-public final class StoneWall extends Spell {
+public class StoneWall extends Spell {
     public StoneWall() {
         super(Config.STONE_WALL_USE_DURATION);
     }
@@ -31,11 +31,11 @@ public final class StoneWall extends Spell {
                 if (d == Direction.SOUTH)
                     b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, Config.STONE_WALL_VERTICAL.get())), Blocks.STONE) || b;
                 if (d == Direction.EAST)
-                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.STONE_WALL_VERTICAL.get(), h, w)), Blocks.STONE) || b;
+                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(Config.STONE_WALL_VERTICAL.get(), h, w)), Blocks.STONE) || b;
                 if (d == Direction.NORTH)
                     b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, -Config.STONE_WALL_VERTICAL.get())), Blocks.STONE) || b;
                 if (d == Direction.WEST)
-                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(Config.STONE_WALL_VERTICAL.get(), h, w)), Blocks.STONE) || b;
+                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.STONE_WALL_VERTICAL.get(), h, w)), Blocks.STONE) || b;
             }
         return b;
     }

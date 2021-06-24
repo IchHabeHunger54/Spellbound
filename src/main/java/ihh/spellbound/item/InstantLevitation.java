@@ -5,7 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.server.ServerWorld;
 
-public final class InstantLevitation extends Spell {
+public class InstantLevitation extends Spell {
     public InstantLevitation() {
         super(Config.AREA_LIGHTNING_USE_DURATION);
     }

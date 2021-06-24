@@ -52,7 +52,7 @@ public abstract class Spell extends Item {
     @Nonnull
     @Override
     public final ActionResult<ItemStack> onItemRightClick(@Nonnull World world, @Nonnull PlayerEntity player, @Nonnull Hand hand) {
-        if (player.isPotionActive(EffectInit.ARCHMAGIC.get()) || timeConfig.get() == 0)
+        if (player.isPotionActive(EffectInit.archmagic) || timeConfig.get() == 0)
             onItemUseFinish(player.getHeldItem(hand), world, player);
         player.setActiveHand(hand);
         return super.onItemRightClick(world, player, hand);
@@ -61,7 +61,7 @@ public abstract class Spell extends Item {
     @Nonnull
     @Override
     public final ItemStack onItemUseFinish(@Nonnull ItemStack stack, @Nonnull World world, @Nonnull LivingEntity entity) {
-        if (entity.isPotionActive(EffectInit.MISCAST_MAGIC.get())) return super.onItemUseFinish(stack, world, entity);
+        if (entity.isPotionActive(EffectInit.miscast_magic)) return super.onItemUseFinish(stack, world, entity);
         if (entity instanceof PlayerEntity && !world.isRemote) {
             boolean b = use(stack, (PlayerEntity) entity, (ServerWorld) world);
             entity.setActiveHand(entity.getActiveHand());
@@ -84,7 +84,7 @@ public abstract class Spell extends Item {
 
     private void doSurge(PlayerEntity entity, World world) {
         int i = entity.isPotionActive(EffectInit.chaos) ? Config.SURGE_CHAOS_CHANCE.get() : Config.SURGE_CHANCE.get();
-        if (!entity.isCreative() && !entity.isPotionActive(EffectInit.SURGE_SHIELD.get()) && i > 0 && world.rand.nextInt(i) == 1) {
+        if (!entity.isCreative() && !entity.isPotionActive(EffectInit.surge_shield) && i > 0 && world.rand.nextInt(i) == 1) {
             Collections.shuffle(Config.SURGE_EFFECTS);
             if (!Config.SURGE_POTION.get() || Config.SURGE_FIRE.get() > 0 && world.rand.nextBoolean()) entity.setFire(Config.SURGE_FIRE.get());
             else entity.addPotionEffect(Config.SURGE_EFFECTS.get(0));

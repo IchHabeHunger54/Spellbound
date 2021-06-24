@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
-public final class PanicRoom extends Spell {
+public class PanicRoom extends Spell {
     public PanicRoom() {
         super(Config.PANIC_ROOM_USE_DURATION);
     }
@@ -25,9 +25,9 @@ public final class PanicRoom extends Spell {
         for (int w = -Config.BEDROCK_WALL_VERTICAL.get(); w <= Config.BEDROCK_WALL_VERTICAL.get(); w++)
             for (int h = 0; h < Config.BEDROCK_WALL_VERTICAL.get(); h++) {
                 b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
-                b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
-                b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, -Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
                 b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, -Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
+                b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
             }
         return b;
     }

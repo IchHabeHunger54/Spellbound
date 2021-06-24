@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.LightType;
 import net.minecraft.world.server.ServerWorld;
 
-public final class Torchlight extends Spell {
+public class Torchlight extends Spell {
     public Torchlight() {
         super(Config.TORCHLIGHT_USE_DURATION);
     }

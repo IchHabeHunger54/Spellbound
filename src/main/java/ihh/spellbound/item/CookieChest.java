@@ -11,7 +11,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
-public final class CookieChest extends Spell {
+public class CookieChest extends Spell {
     public CookieChest() {
         super(Config.COOKIE_CHEST_USE_DURATION);
     }
@@ -34,7 +34,7 @@ public final class CookieChest extends Spell {
                 break;
         }
         if (world.isAirBlock(pos)) {
-            world.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, player.getAdjustedHorizontalFacing()));
+            world.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, player.getAdjustedHorizontalFacing().getOpposite()));
             IInventory inv = ChestBlock.getChestInventory(((ChestBlock) world.getBlockState(pos).getBlock()), world.getBlockState(pos), world, pos, true);
             if (inv != null) for (int i = 0; i < inv.getSizeInventory(); i++)
                 inv.setInventorySlotContents(i, new ItemStack(Items.COOKIE, 64));

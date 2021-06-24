@@ -9,7 +9,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
-public final class BedrockWall extends Spell {
+public class BedrockWall extends Spell {
     public BedrockWall() {
         super(Config.BEDROCK_WALL_USE_DURATION);
     }
@@ -31,11 +31,11 @@ public final class BedrockWall extends Spell {
                 if (d == Direction.SOUTH)
                     b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
                 if (d == Direction.EAST)
-                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
                 if (d == Direction.NORTH)
                     b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(w, h, -Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
                 if (d == Direction.WEST)
-                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
+                    b = Util.replaceAirBlock(world, new BlockPos(player.getPositionVec().add(-Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
             }
         return b;
     }
