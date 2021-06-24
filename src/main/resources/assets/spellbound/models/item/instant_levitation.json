@@ -1,6 +1,1 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spellbound:item/instant_levitation"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"spellbound:item/instant_levitation"}}

@@ -1,6 +1,1 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spellbound:item/greater_fireball"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"spellbound:item/greater_fireball"}}

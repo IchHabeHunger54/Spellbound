@@ -1,5 +1,1 @@
-{
-    "variants": {
-        "": { "model": "spellbound:block/yellow_magic_mushroom" }
-    }
-}
+{"variants":{"":{"model":"spellbound:block/yellow_magic_mushroom"}}}

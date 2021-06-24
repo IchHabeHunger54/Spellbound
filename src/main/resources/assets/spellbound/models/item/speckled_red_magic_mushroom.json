@@ -1,6 +1,1 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spellbound:block/speckled_red_magic_mushroom"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"spellbound:block/speckled_red_magic_mushroom"}}

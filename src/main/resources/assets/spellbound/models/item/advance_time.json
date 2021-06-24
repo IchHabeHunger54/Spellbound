@@ -1,6 +1,1 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spellbound:item/advance_time"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"spellbound:item/advance_time"}}

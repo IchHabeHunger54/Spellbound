@@ -1,6 +1,1 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "spellbound:block/rainbow_magic_mushroom"
-    }
-}
+{"parent":"block/cross","textures":{"cross":"spellbound:block/rainbow_magic_mushroom"}}

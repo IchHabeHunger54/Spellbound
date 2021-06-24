@@ -1,14 +1,1 @@
-{
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "minecraft:red_mushroom"
-    },
-    {
-      "tag": "forge:nuggets/gold"
-    }
-  ],
-  "result": {
-    "item": "spellbound:speckled_red_magic_mushroom"
-  }
-}
+{"ingredients":[{"item":"minecraft:red_mushroom"},{"tag":"forge:nuggets/gold"}],"result":{"item":"spellbound:speckled_red_magic_mushroom"},"type":"minecraft:crafting_shapeless"}

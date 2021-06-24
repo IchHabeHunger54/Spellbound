@@ -1,6 +1,1 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "spellbound:item/lightning_tablet"
-    }
-}
+{"parent":"item/generated","textures":{"layer0":"spellbound:item/lightning_tablet"}}

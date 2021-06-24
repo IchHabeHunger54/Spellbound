@@ -1,16 +1,1 @@
-{
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " # ",
-    "# #",
-    " # "
-  ],
-  "key": {
-    "#": {
-      "item": "minecraft:clay_ball"
-    }
-  },
-  "result": {
-    "item": "spellbound:base_tablet"
-  }
-}
+{"key":{"#":{"item":"minecraft:clay_ball"}},"pattern":[" # ","# #"," # "],"result":{"item":"spellbound:base_tablet"},"type":"minecraft:crafting_shaped"}
