@@ -1,1 +1,1 @@
-{"key":{"#":{"item":"minecraft:snow_block"},"T":{"item":"spellbound:advance_time"}},"pattern":[" # ","#T#"," # "],"result":{"item":"spellbound:change_weather"},"type":"minecraft:crafting_shaped"}
+{"key":{"#":{"item":"minecraft:snow_block"},"W":{"item":"minecraft:water_bucket"},"T":{"item":"spellbound:advance_time"}},"pattern":[" W ","#T#"," W "],"result":{"item":"spellbound:change_weather"},"type":"minecraft:crafting_shaped"}

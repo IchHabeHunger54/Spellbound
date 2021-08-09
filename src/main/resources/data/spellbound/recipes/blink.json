@@ -1,1 +1,1 @@
-{"key":{"#":{"tag":"forge:glass_panes"},"T":{"item":"spellbound:protection_tablet"}},"pattern":[" # ","#T#"," # "],"result":{"item":"spellbound:blink"},"type":"minecraft:crafting_shaped"}
+{"key":{"#":{"tag":"forge:glass_panes"},"T":{"item":"spellbound:mundane_tablet"}},"pattern":[" # ","#T#"," # "],"result":{"item":"spellbound:blink"},"type":"minecraft:crafting_shaped"}

@@ -1,1 +1,1 @@
-{"key":{"#":{"item":"minecraft:cookie"},"C":{"tag":"forge:chests/wooden"},"D":{"tag":"forge:gems/diamond"},"T":{"item":"spellbound:mundane_tablet"}},"pattern":[" D ","#T#"," C "],"result":{"item":"spellbound:cookie_chest"},"type":"minecraft:crafting_shaped"}
+{"key":{"#":{"item":"minecraft:cookie"},"C":{"tag":"forge:chests/wooden"},"D":{"tag":"forge:gems/diamond"},"T":{"item":"spellbound:base_tablet"}},"pattern":[" D ","#T#"," C "],"result":{"item":"spellbound:cookie_chest"},"type":"minecraft:crafting_shaped"}

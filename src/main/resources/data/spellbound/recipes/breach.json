@@ -1,1 +1,1 @@
-{"key":{"#":{"tag":"minecraft:arrows"},"T":{"item":"spellbound:disruption_tablet"}},"pattern":[" # ","#T#"," # "],"result":{"item":"spellbound:breach"},"type":"minecraft:crafting_shaped"}
+{"key":{"#":{"tag":"minecraft:arrows"},"T":{"item":"spellbound:protection_tablet"}},"pattern":[" # ","#T#"," # "],"result":{"item":"spellbound:breach"},"type":"minecraft:crafting_shaped"}
