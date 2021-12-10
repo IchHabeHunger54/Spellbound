@@ -4,30 +4,30 @@ import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nonnull;
 
 public class WailOfTheSheWolf extends SpellProjectile {
-    public WailOfTheSheWolf(EntityType<? extends WailOfTheSheWolf> type, World world) {
-        super(type, world);
+    public WailOfTheSheWolf(EntityType<? extends WailOfTheSheWolf> type, Level level) {
+        super(type, level);
     }
 
     @Override
-    protected void affectBlock(BlockRayTraceResult result) {
-        for (LivingEntity e : Util.getEntitiesInRange(world, this, Config.AREA_LIGHTNING_RANGE.get()))
-            if (!e.isPotionActive(EffectInit.spell_shield))
-                e.attackEntityFrom(DamageSource.MAGIC, Config.WAIL_OF_THE_SHE_WOLF_DAMAGE.get());
+    protected void affectBlock(BlockHitResult result) {
+        for (LivingEntity e : Util.getEntitiesInRange(level, this, Config.AREA_LIGHTNING_RANGE.get()))
+            if (!e.hasEffect(EffectInit.spell_shield))
+                e.hurt(DamageSource.MAGIC, Config.WAIL_OF_THE_SHE_WOLF_DAMAGE.get());
     }
 
     @Override
-    protected void affectEntity(EntityRayTraceResult result) {
+    protected void affectEntity(EntityHitResult result) {
     }
 
     @Nonnull

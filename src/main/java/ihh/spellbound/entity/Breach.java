@@ -4,33 +4,33 @@ import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nonnull;
 
 public class Breach extends SpellProjectile {
-    public Breach(EntityType<? extends Breach> type, World world) {
-        super(type, world);
+    public Breach(EntityType<? extends Breach> type, Level level) {
+        super(type, level);
     }
 
     @Override
-    protected void affectBlock(BlockRayTraceResult result) {
+    protected void affectBlock(BlockHitResult result) {
         for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++)
             for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++)
-                Util.replaceBlock(getItem(), world, new BlockPos(result.getPos().getX() + x, result.getPos().getY(), result.getPos().getZ() + z), Blocks.AIR, true);
+                Util.replaceBlock(getItem(), level, new BlockPos(result.getBlockPos().getX() + x, result.getBlockPos().getY(), result.getBlockPos().getZ() + z), Blocks.AIR, true);
     }
 
     @Override
-    protected void affectEntity(EntityRayTraceResult result) {
-        if (((LivingEntity) result.getEntity()).isPotionActive(EffectInit.spell_shield))
-            ((LivingEntity) result.getEntity()).removeActivePotionEffect(EffectInit.spell_shield);
+    protected void affectEntity(EntityHitResult result) {
+        if (((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield))
+            ((LivingEntity) result.getEntity()).removeEffect(EffectInit.spell_shield);
     }
 
     @Nonnull

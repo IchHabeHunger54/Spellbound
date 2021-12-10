@@ -1,10 +1,10 @@
 package ihh.spellbound.effect;
 
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
-public class BaseEffect extends Effect {
-    public BaseEffect(EffectType typeIn) {
-        super(typeIn, 0xffffff);
+public class BaseEffect extends MobEffect {
+    public BaseEffect(MobEffectCategory category) {
+        super(category, 0xffffff);
     }
 }

@@ -1,12 +1,13 @@
 package ihh.spellbound;
 
 import com.google.common.collect.Lists;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -118,7 +119,7 @@ public final class Config {
     public static ForgeConfigSpec.BooleanValue SURGE_POTION;
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> SURGE_POTIONS;
     private static final ArrayList<String> SURGE_DEFAULT_POTIONS = Lists.newArrayList("minecraft:weakness;200;0;true;true", "minecraft:poison;200;0;true;true");
-    public static ArrayList<EffectInstance> SURGE_EFFECTS = new ArrayList<>();
+    public static ArrayList<MobEffectInstance> SURGE_EFFECTS = new ArrayList<>();
 
     static {
         Config.b = new ForgeConfigSpec.Builder();
@@ -320,17 +321,17 @@ public final class Config {
     }
 
     @SubscribeEvent
-    public static void reload(ModConfig.ModConfigEvent event) {
+    public static void reload(ModConfigEvent event) {
         if (event.getConfig().getType() == ModConfig.Type.SERVER) {
             SURGE_EFFECTS.clear();
             SURGE_POTIONS.get().stream().map(s -> s.split(" ")).filter(s -> s.length >= 2 && s.length <= 4).forEach(s -> {
                 try {
-                    Effect e = ForgeRegistries.POTIONS.getValue(new ResourceLocation(s[0]));
+                    MobEffect e = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(s[0]));
                     if (e == null) return;
                     int duration = Integer.parseInt(s[1]);
                     int amplifier = Integer.parseInt(s[2]);
                     boolean particles = Boolean.parseBoolean(s[3]);
-                    SURGE_EFFECTS.add(new EffectInstance(e, duration <= 1 ? 1 : Math.min(duration, 1000000), amplifier <= 0 ? 0 : Math.min(amplifier, 127), false, particles));
+                    SURGE_EFFECTS.add(new MobEffectInstance(e, duration <= 1 ? 1 : Math.min(duration, 1000000), amplifier <= 0 ? 0 : Math.min(amplifier, 127), false, particles));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

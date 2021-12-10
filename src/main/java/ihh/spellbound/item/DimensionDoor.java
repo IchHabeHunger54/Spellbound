@@ -1,10 +1,10 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.Config;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public class DimensionDoor extends Spell {
     public DimensionDoor() {
@@ -12,30 +12,30 @@ public class DimensionDoor extends Spell {
     }
 
     @Override
-    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
-        int amount = Config.DIMENSION_DOOR_MIN.get() + world.rand.nextInt(Config.DIMENSION_DOOR_MAX.get() - Config.DIMENSION_DOOR_MIN.get());
+    protected boolean use(ItemStack stack, Player player, ServerLevel level) {
+        int amount = Config.DIMENSION_DOOR_MIN.get() + level.random.nextInt(Config.DIMENSION_DOOR_MAX.get() - Config.DIMENSION_DOOR_MIN.get());
         double x = 0, z = 0;
-        switch (player.getAdjustedHorizontalFacing()) {
-            case NORTH:
-                x = player.getPosX();
-                z = player.getPosZ() - amount;
-                break;
-            case EAST:
-                x = player.getPosX() + amount;
-                z = player.getPosZ();
-                break;
-            case SOUTH:
-                x = player.getPosX();
-                z = player.getPosZ() + amount;
-                break;
-            case WEST:
-                x = player.getPosX() - amount;
-                z = player.getPosZ();
-                break;
+        switch (player.getMotionDirection()) {
+            case NORTH -> {
+                x = player.getX();
+                z = player.getZ() - amount;
+            }
+            case EAST -> {
+                x = player.getX() + amount;
+                z = player.getZ();
+            }
+            case SOUTH -> {
+                x = player.getX();
+                z = player.getZ() + amount;
+            }
+            case WEST -> {
+                x = player.getX() - amount;
+                z = player.getZ();
+            }
         }
         int y = 255;
-        while (world.isAirBlock(new BlockPos(x, y - 1, z))) y--;
-        player.setPositionAndUpdate(x, y, z);
+        while (level.getBlockState(new BlockPos(x, y - 1, z)).isAir()) y--;
+        player.setPos(x, y, z);
         return true;
     }
 }

@@ -2,8 +2,8 @@ package ihh.spellbound;
 
 import ihh.spellbound.init.IInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -13,10 +13,10 @@ import javax.annotation.Nonnull;
 
 @Mod("spellbound")
 public final class Spellbound {
-    public static final ItemGroup GROUP = new ItemGroup("spellbound") {
+    public static final CreativeModeTab GROUP = new CreativeModeTab("spellbound") {
         @Nonnull
         @Override
-        public ItemStack createIcon() {
+        public ItemStack makeIcon() {
             return new ItemStack(ItemInit.BASE_TABLET.get());
         }
     };

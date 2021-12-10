@@ -1,15 +1,15 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.Config;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class CookieChest extends Spell {
     public CookieChest() {
@@ -17,27 +17,20 @@ public class CookieChest extends Spell {
     }
 
     @Override
-    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
-        BlockPos pos = player.getPosition();
-        switch (player.getAdjustedHorizontalFacing()) {
-            case EAST:
-                pos = pos.east();
-                break;
-            case SOUTH:
-                pos = pos.south();
-                break;
-            case WEST:
-                pos = pos.west();
-                break;
-            case NORTH:
-                pos = pos.north();
-                break;
-        }
-        if (world.isAirBlock(pos)) {
-            world.setBlockState(pos, Blocks.CHEST.getDefaultState().with(BlockStateProperties.HORIZONTAL_FACING, player.getAdjustedHorizontalFacing().getOpposite()));
-            IInventory inv = ChestBlock.getChestInventory(((ChestBlock) world.getBlockState(pos).getBlock()), world.getBlockState(pos), world, pos, true);
-            if (inv != null) for (int i = 0; i < inv.getSizeInventory(); i++)
-                inv.setInventorySlotContents(i, new ItemStack(Items.COOKIE, 64));
+    protected boolean use(ItemStack stack, Player player, ServerLevel level) {
+        player.getOnPos();
+        BlockPos pos = switch (player.getMotionDirection()) {
+            case EAST -> player.getOnPos().east();
+            case SOUTH -> player.getOnPos().south();
+            case WEST -> player.getOnPos().west();
+            case NORTH -> player.getOnPos().north();
+            default -> player.getOnPos();
+        };
+        if (level.getBlockState(pos).isAir()) {
+            level.setBlock(pos, Blocks.CHEST.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, player.getMotionDirection().getOpposite()), 3);
+            Container inv = ChestBlock.getContainer(((ChestBlock) level.getBlockState(pos).getBlock()), level.getBlockState(pos), level, pos, true);
+            if (inv != null) for (int i = 0; i < inv.getContainerSize(); i++)
+                inv.setItem(i, new ItemStack(Items.COOKIE, 64));
             return true;
         }
         return false;

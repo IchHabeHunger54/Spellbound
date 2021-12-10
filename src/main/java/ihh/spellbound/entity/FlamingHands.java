@@ -4,33 +4,33 @@ import ihh.spellbound.Config;
 import ihh.spellbound.block.Util;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nonnull;
 
 public class FlamingHands extends SpellProjectile {
-    public FlamingHands(EntityType<? extends FlamingHands> type, World world) {
-        super(type, world);
+    public FlamingHands(EntityType<? extends FlamingHands> type, Level level) {
+        super(type, level);
     }
 
     @Override
-    protected void affectBlock(BlockRayTraceResult result) {
-        for (BlockPos pos : Util.getBlocksInRange(world, result.getPos().getX(), result.getPos().getY(), result.getPos().getZ(), Config.FLAMING_HANDS_RANGE.get(), Blocks.AIR))
-            world.setBlockState(pos, Blocks.FIRE.getDefaultState());
+    protected void affectBlock(BlockHitResult result) {
+        for (BlockPos pos : Util.getBlocksInRange(level, result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ(), Config.FLAMING_HANDS_RANGE.get(), Blocks.AIR))
+            level.setBlock(pos, Blocks.FIRE.defaultBlockState(), 3);
     }
 
     @Override
-    protected void affectEntity(EntityRayTraceResult result) {
-        if (!((LivingEntity) result.getEntity()).isPotionActive(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).isPotionActive(EffectInit.fire_shield))
-            result.getEntity().attackEntityFrom(DamageSource.ON_FIRE, Config.FLAMING_HANDS_DAMAGE.get());
+    protected void affectEntity(EntityHitResult result) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.fire_shield))
+            result.getEntity().hurt(DamageSource.ON_FIRE, Config.FLAMING_HANDS_DAMAGE.get());
     }
 
     @Nonnull

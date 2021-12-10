@@ -3,30 +3,30 @@ package ihh.spellbound.entity;
 import ihh.spellbound.Config;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nonnull;
 
 public class Disintegrate extends SpellProjectile {
-    public Disintegrate(EntityType<? extends Disintegrate> type, World world) {
-        super(type, world);
+    public Disintegrate(EntityType<? extends Disintegrate> type, Level level) {
+        super(type, level);
     }
 
     @Override
-    protected void affectBlock(BlockRayTraceResult result) {
+    protected void affectBlock(BlockHitResult result) {
     }
 
     @Override
-    protected void affectEntity(EntityRayTraceResult result) {
-        if (!((LivingEntity) result.getEntity()).isPotionActive(EffectInit.spell_shield)) {
-            result.getEntity().setFire(Config.DISINTEGRATE_DURATION.get());
-            result.getEntity().attackEntityFrom(DamageSource.MAGIC, Config.DISINTEGRATE_DAMAGE.get());
+    protected void affectEntity(EntityHitResult result) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield)) {
+            result.getEntity().setRemainingFireTicks(Config.DISINTEGRATE_DURATION.get());
+            result.getEntity().hurt(DamageSource.MAGIC, Config.DISINTEGRATE_DAMAGE.get());
         }
     }
 

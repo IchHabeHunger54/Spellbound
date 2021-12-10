@@ -3,37 +3,36 @@ package ihh.spellbound.entity;
 import ihh.spellbound.Config;
 import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.LightningBoltEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.EntityRayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 
 import javax.annotation.Nonnull;
 
 public class LightningBolt extends SpellProjectile {
-    public LightningBolt(EntityType<? extends LightningBolt> type, World world) {
-        super(type, world);
+    public LightningBolt(EntityType<? extends LightningBolt> type, Level level) {
+        super(type, level);
     }
 
     @Override
-    protected void affectBlock(BlockRayTraceResult result) {
-        LightningBoltEntity entity = new LightningBoltEntity(EntityType.LIGHTNING_BOLT, world);
-        entity.setEffectOnly(false);
-        entity.setPosition(result.getPos().getX(), result.getPos().getY(), result.getPos().getZ());
-        world.addEntity(entity);
+    protected void affectBlock(BlockHitResult result) {
+        net.minecraft.world.entity.LightningBolt entity = new net.minecraft.world.entity.LightningBolt(EntityType.LIGHTNING_BOLT, level);
+        entity.setVisualOnly(false);
+        entity.setPos(result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ());
+        level.addFreshEntity(entity);
     }
 
     @Override
-    protected void affectEntity(EntityRayTraceResult result) {
-        if (!((LivingEntity) result.getEntity()).isPotionActive(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).isPotionActive(EffectInit.lightning_shield)) {
-            ((LivingEntity) result.getEntity()).addPotionEffect(new EffectInstance(Effects.WEAKNESS, Config.LIGHTNING_BOLT_DURATION.get()));
-            result.getEntity().attackEntityFrom(DamageSource.LIGHTNING_BOLT, Config.LIGHTNING_BOLT_DAMAGE.get());
+    protected void affectEntity(EntityHitResult result) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.lightning_shield)) {
+            ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, Config.LIGHTNING_BOLT_DURATION.get()));
+            result.getEntity().hurt(DamageSource.LIGHTNING_BOLT, Config.LIGHTNING_BOLT_DAMAGE.get());
         }
     }
 

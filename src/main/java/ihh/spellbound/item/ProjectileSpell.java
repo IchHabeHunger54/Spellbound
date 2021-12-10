@@ -1,10 +1,10 @@
 package ihh.spellbound.item;
 
 import ihh.spellbound.entity.SpellProjectile;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.function.Supplier;
@@ -18,12 +18,12 @@ public class ProjectileSpell extends Spell {
     }
 
     @Override
-    protected boolean use(ItemStack stack, PlayerEntity player, ServerWorld world) {
-        SpellProjectile entity = ENTITY.get().create(world);
-        entity.setDirectionAndMovement(player, player.rotationPitch, player.rotationYaw, -20.0F, 0.7F, 1.0F);
-        entity.setPositionAndUpdate(player.getPosX(), player.getPosY() + player.getEyeHeight(), player.getPosZ());
-        entity.setShooter(player);
-        world.addEntity(entity);
+    protected boolean use(ItemStack stack, Player player, ServerLevel level) {
+        SpellProjectile entity = ENTITY.get().create(level);
+        entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -20.0F, 0.7F, 1F);
+        entity.setPos(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
+        entity.setOwner(player);
+        level.addFreshEntity(entity);
         return true;
     }
 }

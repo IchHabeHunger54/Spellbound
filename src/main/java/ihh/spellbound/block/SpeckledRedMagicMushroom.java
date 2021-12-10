@@ -2,7 +2,7 @@ package ihh.spellbound.block;
 
 import com.google.common.collect.Lists;
 import ihh.spellbound.init.BlockInit;
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 

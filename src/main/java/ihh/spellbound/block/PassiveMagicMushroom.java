@@ -1,6 +1,6 @@
 package ihh.spellbound.block;
 
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 
 import java.util.ArrayList;
 
