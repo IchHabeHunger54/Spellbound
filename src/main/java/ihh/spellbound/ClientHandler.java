@@ -33,25 +33,25 @@ public final class ClientHandler {
 
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers e) {
-        e.registerEntityRenderer(EntityInit.AREA_LIGHTNING.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.AREA_LIGHTNING.get()));
-        e.registerEntityRenderer(EntityInit.BREACH.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.BREACH.get()));
-        e.registerEntityRenderer(EntityInit.CHAOS.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.CHAOS.get()));
-        e.registerEntityRenderer(EntityInit.COLD_BLAST.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.COLD_BLAST.get()));
-        e.registerEntityRenderer(EntityInit.COLOR_SPRAY.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.COLOR_SPRAY.get()));
-        e.registerEntityRenderer(EntityInit.DISINTEGRATE.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.DISINTEGRATE.get()));
-        e.registerEntityRenderer(EntityInit.ELEMENTAL_FURY.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.ELEMENTAL_FURY.get()));
-        e.registerEntityRenderer(EntityInit.FIREBALL.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.FIREBALL.get()));
-        e.registerEntityRenderer(EntityInit.FLAMING_HANDS.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.FLAMING_HANDS.get()));
-        e.registerEntityRenderer(EntityInit.GREATER_FIREBALL.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.GREATER_FIREBALL.get()));
-        e.registerEntityRenderer(EntityInit.ICICLE.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.ICICLE.get()));
-        e.registerEntityRenderer(EntityInit.ICY_GRIP.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.ICY_GRIP.get()));
-        e.registerEntityRenderer(EntityInit.LIGHTNING_BOLT.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.LIGHTNING_BOLT.get()));
-        e.registerEntityRenderer(EntityInit.MISCAST_MAGIC.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.MISCAST_MAGIC.get()));
-        e.registerEntityRenderer(EntityInit.PUSH.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.PUSH.get()));
-        e.registerEntityRenderer(EntityInit.SUMMON_SKELETON.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.SUMMON_SKELETON.get()));
-        e.registerEntityRenderer(EntityInit.SUMMON_WITHER_SKELETON.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.SUMMON_WITHER_SKELETON.get()));
-        e.registerEntityRenderer(EntityInit.SUMMON_WOLF.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.SUMMON_WOLF.get()));
-        e.registerEntityRenderer(EntityInit.TASER.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.TASER.get()));
-        e.registerEntityRenderer(EntityInit.WAIL_OF_THE_SHE_WOLF.get(), renderer -> new SpellProjectileRenderer<>(renderer, ItemInit.WAIL_OF_THE_SHE_WOLF.get()));
+        e.registerEntityRenderer(EntityInit.AREA_LIGHTNING.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.AREA_LIGHTNING.get()));
+        e.registerEntityRenderer(EntityInit.BREACH.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.BREACH.get()));
+        e.registerEntityRenderer(EntityInit.CHAOS.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.CHAOS.get()));
+        e.registerEntityRenderer(EntityInit.COLD_BLAST.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.COLD_BLAST.get()));
+        e.registerEntityRenderer(EntityInit.COLOR_SPRAY.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.COLOR_SPRAY.get()));
+        e.registerEntityRenderer(EntityInit.DISINTEGRATE.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.DISINTEGRATE.get()));
+        e.registerEntityRenderer(EntityInit.ELEMENTAL_FURY.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.ELEMENTAL_FURY.get()));
+        e.registerEntityRenderer(EntityInit.FIREBALL.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.FIREBALL.get()));
+        e.registerEntityRenderer(EntityInit.FLAMING_HANDS.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.FLAMING_HANDS.get()));
+        e.registerEntityRenderer(EntityInit.GREATER_FIREBALL.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.GREATER_FIREBALL.get()));
+        e.registerEntityRenderer(EntityInit.ICICLE.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.ICICLE.get()));
+        e.registerEntityRenderer(EntityInit.ICY_GRIP.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.ICY_GRIP.get()));
+        e.registerEntityRenderer(EntityInit.LIGHTNING_BOLT.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.LIGHTNING_BOLT.get()));
+        e.registerEntityRenderer(EntityInit.MISCAST_MAGIC.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.MISCAST_MAGIC.get()));
+        e.registerEntityRenderer(EntityInit.PUSH.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.PUSH.get()));
+        e.registerEntityRenderer(EntityInit.SUMMON_SKELETON.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.SUMMON_SKELETON.get()));
+        e.registerEntityRenderer(EntityInit.SUMMON_WITHER_SKELETON.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.SUMMON_WITHER_SKELETON.get()));
+        e.registerEntityRenderer(EntityInit.SUMMON_WOLF.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.SUMMON_WOLF.get()));
+        e.registerEntityRenderer(EntityInit.TASER.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.TASER.get()));
+        e.registerEntityRenderer(EntityInit.WAIL_OF_THE_SHE_WOLF.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.WAIL_OF_THE_SHE_WOLF.get()));
     }
 }

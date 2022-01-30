@@ -25,14 +25,16 @@ public class IcyGrip extends SpellProjectile {
 
     @Override
     protected void affectBlock(BlockHitResult result) {
-        for (BlockPos pos : Util.getBlocksInRange(level, result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ(), Config.ICY_GRIP_RANGE.get(), Blocks.AIR))
-            if (level.getBlockState(pos.below()).isSolidRender(level, pos.below()))
+        for (BlockPos pos : Util.getBlocksInRange(level, result.getBlockPos().getX(), result.getBlockPos().getY(), result.getBlockPos().getZ(), Config.ICY_GRIP_RANGE.get(), Blocks.AIR)) {
+            if (level.getBlockState(pos.below()).isSolidRender(level, pos.below())) {
                 level.setBlock(pos, Blocks.SNOW.defaultBlockState(), 3);
+            }
+        }
     }
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.cold_shield)) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.COLD_SHIELD.get())) {
             ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, Config.ICY_GRIP_DURATION.get()));
             result.getEntity().hurt(DamageSource.MAGIC, Config.ICY_GRIP_DAMAGE.get());
             result.getEntity().clearFire();

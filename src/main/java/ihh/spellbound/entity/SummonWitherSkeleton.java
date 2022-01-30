@@ -21,7 +21,7 @@ public class SummonWitherSkeleton extends SpellProjectile {
     protected void affectBlock(BlockHitResult result) {
         WitherSkeleton e = new WitherSkeleton(EntityType.WITHER_SKELETON, level);
         e.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.STONE_SWORD));
-        e.setPos(getOwner().getX(), getOwner().getY(), getOwner().getZ());
+        e.setPos(getX(), getY(), getZ());
         level.addFreshEntity(e);
     }
 

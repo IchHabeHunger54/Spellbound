@@ -16,6 +16,8 @@ public class DecayingBlock extends Block {
 
     @Override
     public void randomTick(@Nonnull BlockState state, @Nonnull ServerLevel levelIn, @Nonnull BlockPos pos, Random rand) {
-        if (rand.nextBoolean()) levelIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+        if (rand.nextBoolean()) {
+            levelIn.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+        }
     }
 }

@@ -24,8 +24,9 @@ public class Chaos extends SpellProjectile {
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield))
-            ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(EffectInit.chaos, Config.CHAOS_DURATION.get()));
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get())) {
+            ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(EffectInit.CHAOS.get(), Config.CHAOS_DURATION.get()));
+        }
     }
 
     @Nonnull

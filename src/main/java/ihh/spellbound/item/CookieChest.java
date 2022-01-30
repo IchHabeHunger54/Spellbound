@@ -18,19 +18,20 @@ public class CookieChest extends Spell {
 
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
-        player.getOnPos();
+        player.blockPosition();
         BlockPos pos = switch (player.getMotionDirection()) {
-            case EAST -> player.getOnPos().east();
-            case SOUTH -> player.getOnPos().south();
-            case WEST -> player.getOnPos().west();
-            case NORTH -> player.getOnPos().north();
-            default -> player.getOnPos();
+            case EAST -> player.blockPosition().east();
+            case SOUTH -> player.blockPosition().south();
+            case WEST -> player.blockPosition().west();
+            case NORTH -> player.blockPosition().north();
+            default -> player.blockPosition();
         };
         if (level.getBlockState(pos).isAir()) {
             level.setBlock(pos, Blocks.CHEST.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, player.getMotionDirection().getOpposite()), 3);
             Container inv = ChestBlock.getContainer(((ChestBlock) level.getBlockState(pos).getBlock()), level.getBlockState(pos), level, pos, true);
-            if (inv != null) for (int i = 0; i < inv.getContainerSize(); i++)
+            if (inv != null) for (int i = 0; i < inv.getContainerSize(); i++) {
                 inv.setItem(i, new ItemStack(Items.COOKIE, 64));
+            }
             return true;
         }
         return false;

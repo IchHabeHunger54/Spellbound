@@ -7,12 +7,12 @@ import net.minecraft.world.item.ItemStack;
 
 public class InstantLevitation extends Spell {
     public InstantLevitation() {
-        super(Config.AREA_LIGHTNING_USE_DURATION);
+        super(Config.INSTANT_LEVITATION_USE_DURATION);
     }
 
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
-        player.setPos(player.getX(), player.getY() + Config.INSTANT_LEVITATION_RANGE.get(), player.getZ());
+        player.moveTo(player.getX(), player.getY() + Config.INSTANT_LEVITATION_RANGE.get(), player.getZ());
         return true;
     }
 }

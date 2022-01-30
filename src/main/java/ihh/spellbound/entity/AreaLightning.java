@@ -23,8 +23,8 @@ public class AreaLightning extends SpellProjectile {
 
     @Override
     protected void affectBlock(BlockHitResult result) {
-        for (LivingEntity e : Util.getEntitiesInRange(level, this, Config.AREA_LIGHTNING_RANGE.get()))
-            if (!e.hasEffect(EffectInit.spell_shield) && !(e.hasEffect(EffectInit.lightning_shield)) && level.canSeeSky(e.getOnPos().below())) {
+        for (LivingEntity e : Util.getEntitiesInRange(level, this, Config.AREA_LIGHTNING_RANGE.get())) {
+            if (!e.hasEffect(EffectInit.SPELL_SHIELD.get()) && !e.hasEffect(EffectInit.LIGHTNING_SHIELD.get()) && (level.canSeeSky(e.blockPosition().below()) || level.canSeeSky(e.blockPosition()))) {
                 e.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, Config.LIGHTNING_BOLT_DURATION.get()));
                 e.hurt(DamageSource.LIGHTNING_BOLT, Config.AREA_LIGHTNING_DAMAGE.get());
                 net.minecraft.world.entity.LightningBolt l = new net.minecraft.world.entity.LightningBolt(EntityType.LIGHTNING_BOLT, level);
@@ -32,6 +32,7 @@ public class AreaLightning extends SpellProjectile {
                 l.setPos(e.getX(), e.getY(), e.getZ());
                 level.addFreshEntity(l);
             }
+        }
     }
 
     @Override

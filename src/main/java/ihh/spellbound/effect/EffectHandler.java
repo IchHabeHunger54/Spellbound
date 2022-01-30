@@ -11,26 +11,27 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = "spellbound")
 public final class EffectHandler {
     @SubscribeEvent
-    public static void addPotionMobEffect(PotionEvent.PotionAddedEvent e) {
-        if (e.getEntity().getLevel().isClientSide())
-            return;
-        if (e.getPotionEffect().getEffect() == EffectInit.flight)
+    static void addPotionMobEffect(PotionEvent.PotionAddedEvent e) {
+        if (e.getEntity().getLevel().isClientSide()) return;
+        if (e.getPotionEffect().getEffect() == EffectInit.FLIGHT.get()) {
             startFlight(e.getEntityLiving());
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void removePotionMobEffect(PotionEvent.PotionExpiryEvent e) {
+    static void removePotionMobEffect(PotionEvent.PotionExpiryEvent e) {
         if (e.getEntity().getLevel().isClientSide() || e.getPotionEffect() == null) return;
-        if (e.getPotionEffect().getEffect() == EffectInit.flight)
+        if (e.getPotionEffect().getEffect() == EffectInit.FLIGHT.get()) {
             stopFlight(e.getEntityLiving());
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void removePotionMobEffect(PotionEvent.PotionRemoveEvent e) {
-        if (e.getEntity().getLevel().isClientSide())
-            return;
-        if (e.getPotion() == EffectInit.flight)
+    static void removePotionMobEffect(PotionEvent.PotionRemoveEvent e) {
+        if (e.getEntity().getLevel().isClientSide()) return;
+        if (e.getPotion() == EffectInit.FLIGHT.get()) {
             stopFlight(e.getEntityLiving());
+        }
     }
 
     private static void startFlight(LivingEntity e) {

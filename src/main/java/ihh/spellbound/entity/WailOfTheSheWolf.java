@@ -21,9 +21,11 @@ public class WailOfTheSheWolf extends SpellProjectile {
 
     @Override
     protected void affectBlock(BlockHitResult result) {
-        for (LivingEntity e : Util.getEntitiesInRange(level, this, Config.AREA_LIGHTNING_RANGE.get()))
-            if (!e.hasEffect(EffectInit.spell_shield))
+        for (LivingEntity e : Util.getEntitiesInRange(level, this, Config.AREA_LIGHTNING_RANGE.get())) {
+            if (!e.hasEffect(EffectInit.SPELL_SHIELD.get())) {
                 e.hurt(DamageSource.MAGIC, Config.WAIL_OF_THE_SHE_WOLF_DAMAGE.get());
+            }
+        }
     }
 
     @Override

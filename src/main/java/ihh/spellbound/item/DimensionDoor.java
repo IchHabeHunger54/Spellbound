@@ -34,8 +34,10 @@ public class DimensionDoor extends Spell {
             }
         }
         int y = 255;
-        while (level.getBlockState(new BlockPos(x, y - 1, z)).isAir()) y--;
-        player.setPos(x, y, z);
+        while (level.getBlockState(new BlockPos(x, y - 1, z)).isAir()) {
+            y--;
+        }
+        player.moveTo(x, y, z);
         return true;
     }
 }

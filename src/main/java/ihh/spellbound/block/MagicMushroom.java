@@ -21,7 +21,7 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 public abstract class MagicMushroom extends BushBlock {
-    private static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
+    private static final VoxelShape SHAPE = Block.box(5D, 0D, 5D, 11D, 6D, 11D);
     private static final ArrayList<Direction> DIRECTIONS = Lists.newArrayList(Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
     public MagicMushroom() {
@@ -53,19 +53,31 @@ public abstract class MagicMushroom extends BushBlock {
     @Override
     public void tick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull Random rand) {
         if (!getMates().isEmpty()) {
+            BlockPos pos1 = pos, pos2 = pos;
             Collections.shuffle(DIRECTIONS);
-            if (DIRECTIONS.get(0) == Direction.NORTH)
-                if (getMates().contains(level.getBlockState(pos.north(2)).getBlock()) && level.getBlockState(pos.north()).isAir())
-                    level.setBlock(pos.north(), getChild(level.getBlockState(pos.north(2)).getBlock()).defaultBlockState(), 3);
-            if (DIRECTIONS.get(0) == Direction.EAST)
-                if (getMates().contains(level.getBlockState(pos.east(2)).getBlock()) && level.getBlockState(pos.east()).isAir())
-                    level.setBlock(pos.east(), getChild(level.getBlockState(pos.east(2)).getBlock()).defaultBlockState(), 3);
-            if (DIRECTIONS.get(0) == Direction.SOUTH)
-                if (getMates().contains(level.getBlockState(pos.south(2)).getBlock()) && level.getBlockState(pos.south()).isAir())
-                    level.setBlock(pos.south(), getChild(level.getBlockState(pos.south(2)).getBlock()).defaultBlockState(), 3);
-            if (DIRECTIONS.get(0) == Direction.WEST)
-                if (getMates().contains(level.getBlockState(pos.west(2)).getBlock()) && level.getBlockState(pos.west()).isAir())
-                    level.setBlock(pos.west(), getChild(level.getBlockState(pos.west(2)).getBlock()).defaultBlockState(), 3);
+            Direction direction = DIRECTIONS.get(0);
+            switch (direction) {
+                case NORTH -> {
+                    pos1 = pos.north();
+                    pos2 = pos1.north();
+                }
+                case EAST -> {
+                    pos1 = pos.east();
+                    pos2 = pos1.east();
+                }
+                case SOUTH -> {
+                    pos1 = pos.south();
+                    pos2 = pos1.south();
+                }
+                case WEST -> {
+                    pos1 = pos.west();
+                    pos2 = pos1.west();
+                }
+            }
+            BlockState block1 = level.getBlockState(pos1), block2 = level.getBlockState(pos2);
+            if (getMates().contains(block1.getBlock()) && block2.isAir()) {
+                level.setBlock(pos1, getChild(block2.getBlock()).defaultBlockState(), 3);
+            }
         }
     }
 

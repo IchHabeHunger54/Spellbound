@@ -15,8 +15,8 @@ public class Torchlight extends Spell {
 
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
-        if (level.getBrightness(LightLayer.BLOCK, player.getOnPos()) < 8) {
-            Util.replaceAirBlock(level, player.getOnPos(), Blocks.TORCH);
+        if (level.getBrightness(LightLayer.BLOCK, player.blockPosition()) == 0) {
+            Util.replaceAirBlock(level, player.blockPosition(), Blocks.TORCH);
             return true;
         }
         return false;

@@ -21,7 +21,7 @@ public class SummonSkeleton extends SpellProjectile {
     protected void affectBlock(BlockHitResult result) {
         Skeleton e = new Skeleton(EntityType.SKELETON, level);
         e.setItemInHand(InteractionHand.MAIN_HAND, new ItemStack(Items.BOW));
-        e.setPos(getOwner().getX(), getOwner().getY(), getOwner().getZ());
+        e.setPos(getX(), getY(), getZ());
         level.addFreshEntity(e);
     }
 

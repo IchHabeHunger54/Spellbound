@@ -30,7 +30,7 @@ public class LightningBolt extends SpellProjectile {
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.lightning_shield)) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.LIGHTNING_SHIELD.get())) {
             ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.WEAKNESS, Config.LIGHTNING_BOLT_DURATION.get()));
             result.getEntity().hurt(DamageSource.LIGHTNING_BOLT, Config.LIGHTNING_BOLT_DAMAGE.get());
         }

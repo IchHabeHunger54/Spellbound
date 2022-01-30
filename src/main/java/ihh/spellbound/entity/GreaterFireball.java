@@ -26,8 +26,9 @@ public class GreaterFireball extends SpellProjectile {
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.fire_shield))
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.FIRE_SHIELD.get())) {
             result.getEntity().hurt(DamageSource.ON_FIRE, Config.GREATER_FIREBALL_DAMAGE.get());
+        }
     }
 
     @Nonnull

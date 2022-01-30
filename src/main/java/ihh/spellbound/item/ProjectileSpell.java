@@ -20,9 +20,9 @@ public class ProjectileSpell extends Spell {
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
         SpellProjectile entity = ENTITY.get().create(level);
-        entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -20.0F, 0.7F, 1F);
-        entity.setPos(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
         entity.setOwner(player);
+        entity.setPos(player.getX(), player.getEyeY(), player.getZ());
+        entity.shootFromRotation(player, player.getXRot(), player.getYRot(), -20F, 0.7F, 1F);
         level.addFreshEntity(entity);
         return true;
     }

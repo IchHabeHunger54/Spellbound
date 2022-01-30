@@ -30,20 +30,24 @@ public class ColorSpray extends SpellProjectile {
 
     @Override
     protected void affectBlock(BlockHitResult result) {
-        for (int x = -Config.COLOR_SPRAY_RANGE.get(); x <= Config.COLOR_SPRAY_RANGE.get(); x++)
+        for (int x = -Config.COLOR_SPRAY_RANGE.get(); x <= Config.COLOR_SPRAY_RANGE.get(); x++) {
             for (int z = -Config.COLOR_SPRAY_RANGE.get(); z <= Config.COLOR_SPRAY_RANGE.get(); z++) {
                 BlockPos pos = result.getBlockPos().offset(x, 0, z);
-                if (Arrays.asList(WOOL).contains(level.getBlockState(pos).getBlock()))
+                if (Arrays.asList(WOOL).contains(level.getBlockState(pos).getBlock())) {
                     level.setBlock(pos, WOOL[level.random.nextInt(16)].defaultBlockState(), 3);
+                }
             }
+        }
     }
 
     @Override
     protected void affectEntity(EntityHitResult result) {
         ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.BLINDNESS, Config.COLOR_SPRAY_DURATION.get()));
-        for (LivingEntity e : Util.getEntitiesInRange(level, result.getEntity(), Config.COLOR_SPRAY_RANGE.get()))
-            if (!e.hasEffect(EffectInit.spell_shield) && e instanceof Sheep)
+        for (LivingEntity e : Util.getEntitiesInRange(level, result.getEntity(), Config.COLOR_SPRAY_RANGE.get())) {
+            if (!e.hasEffect(EffectInit.SPELL_SHIELD.get()) && e instanceof Sheep) {
                 ((Sheep) e).setColor(DyeColor.byId(level.random.nextInt(16)));
+            }
+        }
     }
 
     @Nonnull

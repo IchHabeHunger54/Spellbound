@@ -24,7 +24,7 @@ public class Disintegrate extends SpellProjectile {
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield)) {
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get())) {
             result.getEntity().setRemainingFireTicks(Config.DISINTEGRATE_DURATION.get());
             result.getEntity().hurt(DamageSource.MAGIC, Config.DISINTEGRATE_DAMAGE.get());
         }

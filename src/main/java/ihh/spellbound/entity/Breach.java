@@ -22,15 +22,18 @@ public class Breach extends SpellProjectile {
 
     @Override
     protected void affectBlock(BlockHitResult result) {
-        for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++)
-            for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++)
+        for (int x = -Config.BREACH_RANGE.get(); x <= Config.BREACH_RANGE.get(); x++) {
+            for (int z = -Config.BREACH_RANGE.get(); z <= Config.BREACH_RANGE.get(); z++) {
                 Util.replaceBlock(getItem(), level, new BlockPos(result.getBlockPos().getX() + x, result.getBlockPos().getY(), result.getBlockPos().getZ() + z), Blocks.AIR, true);
+            }
+        }
     }
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield))
-            ((LivingEntity) result.getEntity()).removeEffect(EffectInit.spell_shield);
+        if (((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get())) {
+            ((LivingEntity) result.getEntity()).removeEffect(EffectInit.SPELL_SHIELD.get());
+        }
     }
 
     @Nonnull

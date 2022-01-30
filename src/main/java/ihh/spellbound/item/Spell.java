@@ -46,48 +46,62 @@ public abstract class Spell extends Item {
 
     @Override
     public final int getUseDuration(@Nonnull ItemStack s) {
-        return timeConfig.get();
+        return 72000;
     }
 
     @Nonnull
     @Override
     public final InteractionResultHolder<ItemStack> use(@Nonnull Level level, @Nonnull Player player, @Nonnull InteractionHand hand) {
-        if (player.hasEffect(EffectInit.archmagic) || timeConfig.get() == 0)
-            finishUsingItem(player.getItemInHand(hand), level, player);
-        player.startUsingItem(hand);
+        if (player.hasEffect(EffectInit.ARCHMAGIC.get()) || timeConfig.get() == 0) {
+            releaseUsing(player.getItemInHand(hand), level, player, 0);
+        } else {
+            player.startUsingItem(hand);
+        }
+        level.playSound(null, player.blockPosition(), getTimeSound(), SoundSource.PLAYERS, 1f, 0.2f);
         return super.use(level, player, hand);
     }
 
     @Override
-    public void releaseUsing(@Nonnull ItemStack stack, @Nonnull Level level, LivingEntity entity, int ticks) {
-        if (entity.hasEffect(EffectInit.miscast_magic)) return;
-        if (entity instanceof Player player && !level.isClientSide()) {
-            boolean b = use(stack, player, (ServerLevel) level);
+    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
+        if (!player.level.isClientSide() && count <= 72000 - timeConfig.get()) {
+            releaseUsing(stack, player.level, player, count);
+        }
+        super.onUsingTick(stack, player, count);
+    }
+
+    @Override
+    public void releaseUsing(@Nonnull ItemStack stack, @Nonnull Level level, LivingEntity entity, int count) {
+        if (entity.hasEffect(EffectInit.MISCAST_MAGIC.get())) return;
+        if (!level.isClientSide() && entity instanceof Player player && count <= 72000 - timeConfig.get()) {
+            if (use(stack, player, (ServerLevel) level) && !player.isCreative()) {
+                stack.shrink(1);
+            }
             entity.setItemInHand(entity.getUsedItemHand(), entity.getItemInHand(entity.getUsedItemHand()));
-            doSurge(player, level);
-            if (!player.isCreative() && b) stack.shrink(1);
-            level.playSound(player, entity.blockPosition(), getTimeSound(), SoundSource.PLAYERS, 1, 1);
+            player.stopUsingItem();
             player.awardStat(Stats.ITEM_USED.get(this));
+            doSurge(player, level);
         }
     }
 
     public final SoundEvent getTimeSound() {
         if (timeConfig.get() < 20) return SoundInit.ZERO_SPELL.get();
-        else if (timeConfig.get() < 40) return SoundInit.ONE_SPELL.get();
-        else if (timeConfig.get() < 60) return SoundInit.TWO_SPELL.get();
-        else if (timeConfig.get() < 80) return SoundInit.THREE_SPELL.get();
-        else if (timeConfig.get() < 100) return SoundInit.FOUR_SPELL.get();
-        else return SoundInit.FIVE_SPELL.get();
+        if (timeConfig.get() < 40) return SoundInit.ONE_SPELL.get();
+        if (timeConfig.get() < 60) return SoundInit.TWO_SPELL.get();
+        if (timeConfig.get() < 80) return SoundInit.THREE_SPELL.get();
+        if (timeConfig.get() < 100) return SoundInit.FOUR_SPELL.get();
+        return SoundInit.FIVE_SPELL.get();
     }
 
     private void doSurge(Player entity, Level level) {
-        int i = entity.hasEffect(EffectInit.chaos) ? Config.SURGE_CHAOS_CHANCE.get() : Config.SURGE_CHANCE.get();
-        if (!entity.isCreative() && !entity.hasEffect(EffectInit.surge_shield) && i > 0 && level.random.nextInt(i) == 1) {
+        int i = entity.hasEffect(EffectInit.CHAOS.get()) ? Config.SURGE_CHAOS_CHANCE.get() : Config.SURGE_CHANCE.get();
+        if (!entity.isCreative() && !entity.hasEffect(EffectInit.SURGE_SHIELD.get()) && i > 0 && level.random.nextInt(i) == 1) {
             Collections.shuffle(Config.SURGE_EFFECTS);
-            if (!Config.SURGE_POTION.get() || Config.SURGE_FIRE.get() > 0 && level.random.nextBoolean())
+            if (!Config.SURGE_POTION.get() || Config.SURGE_FIRE.get() > 0 && level.random.nextBoolean()) {
                 entity.setRemainingFireTicks(Config.SURGE_FIRE.get());
-            else entity.addEffect(Config.SURGE_EFFECTS.get(0));
-            level.playSound(entity, entity.blockPosition(), SoundInit.SURGE.get(), SoundSource.PLAYERS, 1, 1);
+            } else {
+                entity.addEffect(Config.SURGE_EFFECTS.get(0));
+            }
+            level.playSound(null, entity.blockPosition(), SoundInit.SURGE.get(), SoundSource.PLAYERS, 1f, 0.2f);
         }
     }
 

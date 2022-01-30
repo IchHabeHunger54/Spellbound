@@ -24,8 +24,9 @@ public class MiscastMagic extends SpellProjectile {
 
     @Override
     protected void affectEntity(EntityHitResult result) {
-        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.spell_shield))
-            ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(EffectInit.miscast_magic, Config.MISCAST_MAGIC_DURATION.get()));
+        if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get())) {
+            ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(EffectInit.MISCAST_MAGIC.get(), Config.MISCAST_MAGIC_DURATION.get()));
+        }
     }
 
     @Nonnull

@@ -52,9 +52,11 @@ public final class Util {
 
     public static void replaceBlock(ItemStack stack, Level level, BlockPos pos, Block block, boolean drop) {
         if (level.getBlockState(pos).getDestroySpeed(level, pos) >= 0) {
-            if (drop)
-                for (ItemStack i : new ArrayList<>(level.getBlockState(pos).getDrops((new LootContext.Builder((ServerLevel) level)).withRandom(level.random).withParameter(LootContextParams.TOOL, stack).withParameter(LootContextParams.ORIGIN, new Vec3(pos.getX(), pos.getY(), pos.getZ())))))
+            if (drop) {
+                for (ItemStack i : new ArrayList<>(level.getBlockState(pos).getDrops((new LootContext.Builder((ServerLevel) level)).withRandom(level.random).withParameter(LootContextParams.TOOL, stack).withParameter(LootContextParams.ORIGIN, new Vec3(pos.getX(), pos.getY(), pos.getZ()))))) {
                     level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), i));
+                }
+            }
             level.setBlock(pos, block.defaultBlockState(), 3);
         }
     }

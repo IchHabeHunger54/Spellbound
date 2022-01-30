@@ -16,19 +16,24 @@ public class PanicRoom extends Spell {
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
         boolean b = false;
-        for (int w = -Config.BEDROCK_WALL_HORIZONTAL.get(); w <= Config.BEDROCK_WALL_HORIZONTAL.get(); w++)
-            for (int h = -Config.BEDROCK_WALL_HORIZONTAL.get(); h <= Config.BEDROCK_WALL_HORIZONTAL.get(); h++)
+        for (int w = -Config.BEDROCK_WALL_HORIZONTAL.get(); w <= Config.BEDROCK_WALL_HORIZONTAL.get(); w++) {
+            for (int h = -Config.BEDROCK_WALL_HORIZONTAL.get(); h <= Config.BEDROCK_WALL_HORIZONTAL.get(); h++) {
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(w, Config.BEDROCK_WALL_VERTICAL.get(), h)), BlockInit.DECAYING_BEDROCK.get()) || b;
-        for (int w = -Config.BEDROCK_WALL_HORIZONTAL.get(); w <= Config.BEDROCK_WALL_HORIZONTAL.get(); w++)
-            for (int h = -Config.BEDROCK_WALL_HORIZONTAL.get(); h <= Config.BEDROCK_WALL_HORIZONTAL.get(); h++)
+            }
+        }
+        for (int w = -Config.BEDROCK_WALL_HORIZONTAL.get(); w <= Config.BEDROCK_WALL_HORIZONTAL.get(); w++) {
+            for (int h = -Config.BEDROCK_WALL_HORIZONTAL.get(); h <= Config.BEDROCK_WALL_HORIZONTAL.get(); h++) {
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(w, -1, h)), BlockInit.DECAYING_BEDROCK.get()) || b;
-        for (int w = -Config.BEDROCK_WALL_VERTICAL.get(); w <= Config.BEDROCK_WALL_VERTICAL.get(); w++)
+            }
+        }
+        for (int w = -Config.BEDROCK_WALL_VERTICAL.get(); w <= Config.BEDROCK_WALL_VERTICAL.get(); w++) {
             for (int h = 0; h < Config.BEDROCK_WALL_VERTICAL.get(); h++) {
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(w, h, Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(w, h, -Config.BEDROCK_WALL_VERTICAL.get())), BlockInit.DECAYING_BEDROCK.get()) || b;
                 b = Util.replaceAirBlock(level, new BlockPos(player.position().add(-Config.BEDROCK_WALL_VERTICAL.get(), h, w)), BlockInit.DECAYING_BEDROCK.get()) || b;
             }
+        }
         return b;
     }
 }

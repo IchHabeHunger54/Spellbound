@@ -12,10 +12,11 @@ public class ChangeWeather extends Spell {
 
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
-        if (level.isThundering())
+        if (level.isThundering()) {
             level.setWeatherParameters(Config.CHANGE_WEATHER_MIN.get() + level.random.nextInt(Math.max(Config.CHANGE_WEATHER_MAX.get() - Config.CHANGE_WEATHER_MIN.get(), 1)), 0, false, false);
-        else
+        } else {
             level.setWeatherParameters(0, Config.CHANGE_WEATHER_MIN.get() + level.random.nextInt(Math.max(Config.CHANGE_WEATHER_MAX.get() - Config.CHANGE_WEATHER_MIN.get(), 1)), true, level.isRaining());
+        }
         return true;
     }
 }
