@@ -63,8 +63,8 @@ public abstract class Spell extends Item {
 
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        if (!player.level.isClientSide() && count <= 72000 - timeConfig.get()) {
-            releaseUsing(stack, player.level, player, count);
+        if (!player.getLevel().isClientSide() && count <= 72000 - timeConfig.get()) {
+            releaseUsing(stack, player.getLevel(), player, count);
         }
         super.onUsingTick(stack, player, count);
     }

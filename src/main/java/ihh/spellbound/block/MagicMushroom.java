@@ -55,8 +55,7 @@ public abstract class MagicMushroom extends BushBlock {
         if (!getMates().isEmpty()) {
             BlockPos pos1 = pos, pos2 = pos;
             Collections.shuffle(DIRECTIONS);
-            Direction direction = DIRECTIONS.get(0);
-            switch (direction) {
+            switch (DIRECTIONS.get(0)) {
                 case NORTH -> {
                     pos1 = pos.north();
                     pos2 = pos1.north();

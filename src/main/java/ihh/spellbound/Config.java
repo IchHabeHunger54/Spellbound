@@ -332,7 +332,7 @@ public final class Config {
                     int amplifier = Integer.parseInt(s[2]);
                     boolean particles = Boolean.parseBoolean(s[3]);
                     SURGE_EFFECTS.add(new MobEffectInstance(e, duration <= 1 ? 1 : Math.min(duration, 1000000), amplifier <= 0 ? 0 : Math.min(amplifier, 127), false, particles));
-                } catch (Exception e) {
+                } catch (RuntimeException e) {
                     e.printStackTrace();
                 }
             });
