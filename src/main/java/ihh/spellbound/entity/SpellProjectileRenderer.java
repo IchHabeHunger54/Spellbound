@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 
@@ -14,7 +15,7 @@ public class SpellProjectileRenderer<T extends Entity & ItemSupplier> extends Th
 
     public SpellProjectileRenderer(EntityRendererProvider.Context renderManagerIn, Item item) {
         super(renderManagerIn);
-        ITEM = new ResourceLocation("spellbound:textures/item/" + item.getRegistryName().getPath());
+        ITEM = new ResourceLocation("spellbound:textures/item/" + ForgeRegistries.ITEMS.getKey(item).getPath());
     }
 
     @Nonnull

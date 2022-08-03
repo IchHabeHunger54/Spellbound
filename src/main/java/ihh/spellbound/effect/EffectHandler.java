@@ -3,7 +3,7 @@ package ihh.spellbound.effect;
 import ihh.spellbound.init.EffectInit;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,26 +11,26 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = "spellbound")
 public final class EffectHandler {
     @SubscribeEvent
-    static void addPotionMobEffect(PotionEvent.PotionAddedEvent e) {
+    static void addPotionMobEffect(MobEffectEvent.Added e) {
         if (e.getEntity().getLevel().isClientSide()) return;
-        if (e.getPotionEffect().getEffect() == EffectInit.FLIGHT.get()) {
-            startFlight(e.getEntityLiving());
+        if (e.getEffectInstance().getEffect() == EffectInit.FLIGHT.get()) {
+            startFlight(e.getEntity());
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    static void removePotionMobEffect(PotionEvent.PotionExpiryEvent e) {
-        if (e.getEntity().getLevel().isClientSide() || e.getPotionEffect() == null) return;
-        if (e.getPotionEffect().getEffect() == EffectInit.FLIGHT.get()) {
-            stopFlight(e.getEntityLiving());
+    static void removePotionMobEffect(MobEffectEvent.Expired e) {
+        if (e.getEntity().getLevel().isClientSide() || e.getEffectInstance() == null) return;
+        if (e.getEffectInstance().getEffect() == EffectInit.FLIGHT.get()) {
+            stopFlight(e.getEntity());
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    static void removePotionMobEffect(PotionEvent.PotionRemoveEvent e) {
+    static void removePotionMobEffect(MobEffectEvent.Remove e) {
         if (e.getEntity().getLevel().isClientSide()) return;
-        if (e.getPotion() == EffectInit.FLIGHT.get()) {
-            stopFlight(e.getEntityLiving());
+        if (e.getEffect() == EffectInit.FLIGHT.get()) {
+            stopFlight(e.getEntity());
         }
     }
 

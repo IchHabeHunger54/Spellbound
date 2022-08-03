@@ -12,9 +12,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public interface IInit {
     DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, "spellbound");
     DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, "spellbound");
-    DeferredRegister<MobEffect> EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "spellbound");
-    DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, "spellbound");
-    DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, "spellbound");
+    DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, "spellbound");
+    DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, "spellbound");
+    DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, "spellbound");
 
     static void init(IEventBus bus) {
         BlockInit.init();
@@ -24,8 +24,8 @@ public interface IInit {
         SoundInit.init();
         BLOCKS.register(bus);
         ITEMS.register(bus);
-        EFFECTS.register(bus);
-        ENTITIES.register(bus);
-        SOUNDS.register(bus);
+        MOB_EFFECTS.register(bus);
+        ENTITY_TYPES.register(bus);
+        SOUND_EVENTS.register(bus);
     }
 }

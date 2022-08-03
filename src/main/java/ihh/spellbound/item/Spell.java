@@ -5,7 +5,6 @@ import ihh.spellbound.init.EffectInit;
 import ihh.spellbound.init.ItemInit;
 import ihh.spellbound.init.SoundInit;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -21,9 +20,9 @@ import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.List;
-import javax.annotation.Nonnull;
 
 public abstract class Spell extends Item {
     private final ForgeConfigSpec.IntValue timeConfig;
@@ -35,7 +34,7 @@ public abstract class Spell extends Item {
 
     @Override
     public final void appendHoverText(@Nonnull ItemStack stack, Level level, List<Component> tooltip, @Nonnull TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent("spellbound.useTime", timeConfig.get() / 20f));
+        tooltip.add(Component.translatable("spellbound.useTime", timeConfig.get() / 20f));
     }
 
     @Nonnull

@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -15,10 +16,9 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
-import javax.annotation.Nonnull;
 
 public abstract class MagicMushroom extends BushBlock {
     private static final VoxelShape SHAPE = Block.box(5D, 0D, 5D, 11D, 6D, 11D);
@@ -51,7 +51,7 @@ public abstract class MagicMushroom extends BushBlock {
     }
 
     @Override
-    public void tick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull Random rand) {
+    public void randomTick(@Nonnull BlockState state, @Nonnull ServerLevel level, @Nonnull BlockPos pos, @Nonnull RandomSource rand) {
         if (!getMates().isEmpty()) {
             BlockPos pos1 = pos, pos2 = pos;
             Collections.shuffle(DIRECTIONS);

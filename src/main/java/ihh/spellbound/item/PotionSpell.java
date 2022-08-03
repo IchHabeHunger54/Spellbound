@@ -6,17 +6,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeConfigSpec;
 
-public class PotionSpell extends Spell {
-    private final MobEffectInstance effect;
+import java.util.function.Supplier;
 
-    public PotionSpell(ForgeConfigSpec.IntValue timeConfig, MobEffectInstance instance) {
+public class PotionSpell extends Spell {
+    private final Supplier<MobEffectInstance> effect;
+
+    public PotionSpell(ForgeConfigSpec.IntValue timeConfig, Supplier<MobEffectInstance> instance) {
         super(timeConfig);
         effect = instance;
     }
 
     @Override
     protected boolean use(ItemStack stack, Player player, ServerLevel level) {
-        player.addEffect(effect);
+        player.addEffect(effect.get());
         return true;
     }
 }
