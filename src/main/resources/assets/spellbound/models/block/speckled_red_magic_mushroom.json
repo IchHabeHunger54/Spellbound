@@ -1,1 +1,1 @@
-{"parent":"block/cross","textures":{"cross":"spellbound:block/speckled_red_magic_mushroom"}}
+{"parent":"block/cross","render_type":"minecraft:cutout","textures":{"cross":"spellbound:block/speckled_red_magic_mushroom"}}

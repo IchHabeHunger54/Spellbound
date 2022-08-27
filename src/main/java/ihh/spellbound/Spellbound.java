@@ -11,9 +11,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import javax.annotation.Nonnull;
 
-@Mod("spellbound")
+@Mod(Spellbound.MOD_ID)
 public final class Spellbound {
-    public static final CreativeModeTab GROUP = new CreativeModeTab("spellbound") {
+    public static final String MOD_ID = "spellbound";
+    public static final CreativeModeTab GROUP = new CreativeModeTab(MOD_ID) {
         @Nonnull
         @Override
         public ItemStack makeIcon() {

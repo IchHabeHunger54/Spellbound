@@ -1,36 +1,15 @@
 package ihh.spellbound;
 
 import ihh.spellbound.entity.SpellProjectileRenderer;
-import ihh.spellbound.init.BlockInit;
 import ihh.spellbound.init.EntityInit;
 import ihh.spellbound.init.ItemInit;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = "spellbound")
+@Mod.EventBusSubscriber(value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD, modid = Spellbound.MOD_ID)
 public final class ClientHandler {
-    @SubscribeEvent
-    static void clientSetup(FMLClientSetupEvent e) {
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.BLACK_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.GOLD_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.GRAY_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.LIGHT_BLUE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.ORANGE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.PURPLE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.RAINBOW_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SPECKLED_BLUE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SPECKLED_ORANGE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SPECKLED_PINK_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.SPECKLED_RED_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.WHITE_MAGIC_MUSHROOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(BlockInit.YELLOW_MAGIC_MUSHROOM.get(), RenderType.cutout());
-    }
-
     @SubscribeEvent
     static void registerRenderers(EntityRenderersEvent.RegisterRenderers e) {
         e.registerEntityRenderer(EntityInit.AREA_LIGHTNING.get(), r -> new SpellProjectileRenderer<>(r, ItemInit.AREA_LIGHTNING.get()));
