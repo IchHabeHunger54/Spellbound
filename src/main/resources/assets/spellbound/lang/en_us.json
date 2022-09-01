@@ -99,5 +99,14 @@
   "book.spellbound.getting_started.title": "Getting Started",
   "book.spellbound.magic_mushrooms.title": "Magic Mushrooms",
   "book.spellbound.spells.title": "Spells",
-  "book.spellbound.tablets.title": "Tablets"
+  "book.spellbound.tablets.title": "Tablets",
+  "book.spellbound.getting_started.page0": "Welcome to the world of Spellbound!$(br2)To get started, grab some brown and red mushrooms, a bunch of iron and gold nuggets, and craft some $(l:root/magic_mushrooms)Magic Mushrooms$(). Once you've done that, you can mate the mushrooms into other mushroom variants.$(br2)Finally, you can combine the mushrooms with $(l:root/tablets)tablets$() and other materials to create some $(l:root/spells)spells$() for you to use!",
+  "book.spellbound.magic_mushrooms.page0": "Mushrooms are one of the base parts for $(l:root/spells)spells$(). The two base mushrooms can be created through crafting, as seen on the right.$(br2)Different mushroom types can be mated to produce new mushroom types. To do this, place the two mushroom types close to each other, leaving one block in the center.",
+  "book.spellbound.magic_mushrooms.page2": "White mushrooms are special in that they effectively clone whatever other mushroom they are paired with. In other words:$(br2)White + <Mushroom>$(br)  -> <Mushroom>",
+  "book.spellbound.magic_mushrooms.page3": "Mating mushrooms. The empty space in the center is where the new mushroom will grow.",
+  "book.spellbound.magic_mushrooms.page4": "The combinations for mating are as follows:$(br2)- Speckled Red + Speckled Orange$(br)  -> Speckled Pink$(br)- Speckled Red + Speckled Pink$(br)  -> Speckled Blue$(br)- Speckled Red + Speckled Blue$(br)  -> Purple$(br)- Speckled Orange + Speckled Pink$(br)  -> Yellow$(br)- Speckled Orange + Speckled Blue$(br)  -> Orange",
+  "book.spellbound.magic_mushrooms.page5": "- Speckled Pink + Speckled Blue$(br)  -> Light Blue$(br)- Speckled Red + Light Blue$(br)  -> Gold$(br)- Speckled Orange + Purple$(br)  -> Rainbow$(br)- Speckled Pink + Yellow$(br)  -> Gray$(br)- Speckled Blue + Orange$(br)  -> Black",
+  "book.spellbound.spells.page0": "Spells are the main part of Spellbound. Most spells need to be charged up for a few seconds before they are used up. Every spell has a different crafting process and effect, all of which are described on the following pages.",
+  "book.spellbound.tablets.page0": "Tablets are one of the base parts for $(l:root/spells)spells$(). All tablets are created from base tablets, the same items that were also used to create this book.$(br2)These base tablets can then be augmented with $(l:root/magic_mushrooms)Magic Mushrooms$() to produce more specialized tablets, which serve as the base for $(l:root/spells)spells$().",
+  "book.spellbound.tablets.page1": "All tablets use clay bases for balance."
 }

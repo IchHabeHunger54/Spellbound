@@ -3,9 +3,25 @@
   "category": "spellbound:root",
   "icon": "spellbound:white_magic_mushroom",
   "pages": [
+    "book.spellbound.magic_mushrooms.page0",
     {
-      "type": "patchouli:text",
-      "text": "book.spellbound.magic_mushrooms.page0.text"
-    }
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:speckled_red_magic_mushroom",
+      "recipe2": "spellbound:speckled_orange_magic_mushroom"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:white_magic_mushroom",
+      "text": "book.spellbound.magic_mushrooms.page2"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "spellbound:textures/gui/magic_mushrooms_page2.png"
+      ],
+      "text": "book.spellbound.magic_mushrooms.page3"
+    },
+    "book.spellbound.magic_mushrooms.page4",
+    "book.spellbound.magic_mushrooms.page5"
   ]
 }

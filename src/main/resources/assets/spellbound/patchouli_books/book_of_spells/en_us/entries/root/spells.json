@@ -3,9 +3,201 @@
   "category": "spellbound:root",
   "icon": "spellbound:cookie_chest",
   "pages": [
+    "book.spellbound.spells.page0",
     {
-      "type": "patchouli:text",
-      "text": "book.spellbound.spells.page0.text"
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:icy_grip",
+      "text": "book.spellbound.spell.icy_grip"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:icicle",
+      "text": "book.spellbound.spell.icicle"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:cold_blast",
+      "text": "book.spellbound.spell.cold_blast"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:cold_shield",
+      "text": "book.spellbound.spell.cold_shield"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:flaming_hands",
+      "text": "book.spellbound.spell.flaming_hands"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:fireball",
+      "text": "book.spellbound.spell.fireball"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:greater_fireball",
+      "text": "book.spellbound.spell.greater_fireball"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:fire_shield",
+      "text": "book.spellbound.spell.fire_shield"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:taser",
+      "text": "book.spellbound.spell.taser"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:lightning_bolt",
+      "text": "book.spellbound.spell.lightning_bolt"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:area_lightning",
+      "text": "book.spellbound.spell.area_lightning"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:lightning_shield",
+      "text": "book.spellbound.spell.lightning_shield"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:summon_wolf",
+      "text": "book.spellbound.spell.summon_wolf"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:summon_skeleton",
+      "text": "book.spellbound.spell.summon_skeleton"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:summon_wither_skeleton",
+      "text": "book.spellbound.spell.summon_wither_skeletom"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:surge_shield",
+      "text": "book.spellbound.spell.surge_shield"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:spell_shield",
+      "text": "book.spellbound.spell.spell_shield"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:archmagic",
+      "text": "book.spellbound.spell.archmagic"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:elemental_fury",
+      "text": "book.spellbound.spell.elemental_fury"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:wail_of_the_she_wolf",
+      "text": "book.spellbound.spell.wail_of_the_she_wolf"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:panic_room",
+      "text": "book.spellbound.spell.panic_room"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:bedrock_wall",
+      "text": "book.spellbound.spell.bedrock_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:obsidian_wall",
+      "text": "book.spellbound.spell.obsidian_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:stone_wall",
+      "text": "book.spellbound.spell.stone_wall"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:breach",
+      "text": "book.spellbound.spell.breach"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:color_spray",
+      "text": "book.spellbound.spell.color_spray"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:push",
+      "text": "book.spellbound.spell.push"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:dimension_door",
+      "text": "book.spellbound.spell.dimension_door"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:cookie_chest",
+      "text": "book.spellbound.spell.cookie_chest"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:chaos",
+      "text": "book.spellbound.spell.chaos"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:miscast_magic",
+      "text": "book.spellbound.spell.miscast_magic"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:blink",
+      "text": "book.spellbound.spell.blink"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:fish_form",
+      "text": "book.spellbound.spell.fish_form"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:flight",
+      "text": "book.spellbound.spell.flight"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:haste",
+      "text": "book.spellbound.spell.haste"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:advance_time",
+      "text": "book.spellbound.spell.advance_time"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:change_weather",
+      "text": "book.spellbound.spell.change_weather"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:instant_levitation",
+      "text": "book.spellbound.spell.instant_levitation"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:torchlight",
+      "text": "book.spellbound.spell.torchlight"
     }
   ]
 }

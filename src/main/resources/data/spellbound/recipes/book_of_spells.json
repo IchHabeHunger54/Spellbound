@@ -1,0 +1,1 @@
+{"conditions":[{"type":"forge:mod_loaded","modid":"patchouli"}],"key":{"#":{"item":"spellbound:base_tablet"},"B":{"item":"minecraft:book"}},"pattern":[" # ","#B#"," # "],"result":{"item":"patchouli:guide_book","nbt":{"patchouli:book":"spellbound:book_of_spells"}},"type":"minecraft:crafting_shaped"}

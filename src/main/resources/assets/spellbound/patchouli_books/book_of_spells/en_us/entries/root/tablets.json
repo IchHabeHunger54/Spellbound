@@ -3,9 +3,31 @@
   "category": "spellbound:root",
   "icon": "spellbound:base_tablet",
   "pages": [
+    "book.spellbound.tablets.page0",
     {
-      "type": "patchouli:text",
-      "text": "book.spellbound.tablets.page0.text"
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:base_tablet",
+      "text": "book.spellbound.tablets.page1"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:cold_tablet",
+      "recipe2": "spellbound:fire_tablet"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:lightning_tablet",
+      "recipe2": "spellbound:summon_tablet"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:disruption_tablet",
+      "recipe2": "spellbound:divination_tablet"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "spellbound:protection_tablet",
+      "recipe2": "spellbound:mundane_tablet"
     }
   ]
 }
