@@ -15,6 +15,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -38,6 +39,11 @@ public abstract class MagicMushroom extends BushBlock {
     @Override
     public PushReaction getPistonPushReaction(@Nonnull BlockState state) {
         return PushReaction.DESTROY;
+    }
+
+    @Override
+    public boolean canSurvive(@Nonnull BlockState state, @Nonnull LevelReader level, @Nonnull BlockPos pos) {
+        return mayPlaceOn(state, level, pos);
     }
 
     @Override

@@ -10,9 +10,9 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import java.util.function.Supplier;
 
 public class ProjectileSpell extends Spell {
-    private final Supplier<EntityType<? extends SpellProjectile>> ENTITY;
+    private final Supplier<? extends EntityType<? extends SpellProjectile>> ENTITY;
 
-    public ProjectileSpell(ForgeConfigSpec.IntValue timeConfig, Supplier<EntityType<? extends SpellProjectile>> entityType) {
+    public ProjectileSpell(ForgeConfigSpec.IntValue timeConfig, Supplier<? extends EntityType<? extends SpellProjectile>> entityType) {
         super(timeConfig);
         ENTITY = entityType;
     }
