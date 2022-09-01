@@ -36,7 +36,7 @@ public class Icicle extends SpellProjectile {
     protected void affectEntity(EntityHitResult result) {
         if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.COLD_SHIELD.get())) {
             ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, Config.ICICLE_DURATION.get()));
-            result.getEntity().hurt(DamageSource.MAGIC, Config.ICICLE_DAMAGE.get());
+            result.getEntity().hurt(DamageSource.FREEZE, Config.ICICLE_DAMAGE.get());
             result.getEntity().clearFire();
         }
     }

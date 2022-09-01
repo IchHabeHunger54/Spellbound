@@ -36,7 +36,7 @@ public class IcyGrip extends SpellProjectile {
     protected void affectEntity(EntityHitResult result) {
         if (!((LivingEntity) result.getEntity()).hasEffect(EffectInit.SPELL_SHIELD.get()) && !((LivingEntity) result.getEntity()).hasEffect(EffectInit.COLD_SHIELD.get())) {
             ((LivingEntity) result.getEntity()).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, Config.ICY_GRIP_DURATION.get()));
-            result.getEntity().hurt(DamageSource.MAGIC, Config.ICY_GRIP_DAMAGE.get());
+            result.getEntity().hurt(DamageSource.FREEZE, Config.ICY_GRIP_DAMAGE.get());
             result.getEntity().clearFire();
         }
     }
