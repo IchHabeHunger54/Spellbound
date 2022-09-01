@@ -1,0 +1,11 @@
+{
+  "name": "book.spellbound.magic_mushrooms.title",
+  "category": "spellbound:root",
+  "icon": "spellbound:white_magic_mushroom",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "book.spellbound.magic_mushrooms.page0.text"
+    }
+  ]
+}

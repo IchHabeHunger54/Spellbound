@@ -1,0 +1,11 @@
+{
+  "name": "book.spellbound.getting_started.title",
+  "category": "spellbound:root",
+  "icon": "patchouli:guide_book{\"patchouli:book\":\"spellbound:book_of_spells\"}",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "book.spellbound.getting_started.page0.text"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "name": "book.spellbound.name",
+  "description": "book.spellbound.landing_text",
+  "icon": "patchouli:guide_book{\"patchouli:book\":\"spellbound:book_of_spells\"}"
+}

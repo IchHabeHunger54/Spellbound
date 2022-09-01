@@ -1,0 +1,11 @@
+{
+  "book_texture": "patchouli:textures/gui/book_gray.png",
+  "creative_tab": "spellbound",
+  "i18n": true,
+  "landing_text": "book.spellbound.landing_text",
+  "model": "spellbound:book_of_spells",
+  "name": "book.spellbound.name",
+  "pamphlet": true,
+  "use_resource_pack": true,
+  "version": "1"
+}
