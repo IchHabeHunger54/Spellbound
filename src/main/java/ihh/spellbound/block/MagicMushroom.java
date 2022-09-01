@@ -41,13 +41,8 @@ public abstract class MagicMushroom extends BushBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, @Nonnull LevelReader level, @Nonnull BlockPos pos) {
-        return state.isSolidRender(level, pos);
-    }
-
-    @Override
     public boolean mayPlaceOn(@Nonnull BlockState state, BlockGetter level, BlockPos pos) {
-        return level.getBlockState(pos.below()).isSolidRender(level, pos.below());
+        return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP);
     }
 
     @Override
@@ -74,7 +69,7 @@ public abstract class MagicMushroom extends BushBlock {
                 }
             }
             BlockState block1 = level.getBlockState(pos1), block2 = level.getBlockState(pos2);
-            if (getMates().contains(block1.getBlock()) && block2.isAir()) {
+            if (getMates().contains(block2.getBlock()) && block1.isAir()) {
                 level.setBlock(pos1, getChild(block2.getBlock()).defaultBlockState(), 3);
             }
         }
