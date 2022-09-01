@@ -96,6 +96,11 @@
     },
     {
       "type": "patchouli:crafting",
+      "recipe": "spellbound:disintegrate",
+      "text": "book.spellbound.spell.disintegrate"
+    },
+    {
+      "type": "patchouli:crafting",
       "recipe": "spellbound:elemental_fury",
       "text": "book.spellbound.spell.elemental_fury"
     },
